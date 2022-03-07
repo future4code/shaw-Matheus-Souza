@@ -102,7 +102,43 @@ function classificaTriangulo(ladoA, ladoB, ladoC) {
 
 // EXERCÍCIO 10
 function retornaSegundoMaiorESegundoMenor(array) {
-  
+    let maior = 0
+    let menor = 0
+    let grande = 0
+    let pequeno = 0
+    for (let i = 0; i < array.length; i++) {
+      if(array[i]>0){
+        grande = array[i]
+      }
+      if(grande>maior){
+        maior=grande
+      }
+    }
+    menor = maior
+    for (let i = 0; i < array.length; i++){
+           pequeno = array[i]
+      if(pequeno<menor){
+        menor=pequeno
+      }
+    }  
+    let segundoMaior = 0   
+    let segundoMenor = 0 
+    for (let i = 0; i < array.length; i++) {
+        if(array[i]>0 && array[i]!==maior){
+          grande = array[i]
+        }
+        if(grande>segundoMaior){
+          segundoMaior=grande
+        }
+    segundoMenor = maior
+     for (let i = 0; i < array.length; i++){
+        pequeno = array[i]
+        if(pequeno<segundoMenor && pequeno!==menor){
+            segundoMenor=pequeno
+        }
+    }     
+}   let novaArray = [segundoMaior,segundoMenor]  
+    return novaArray 
 }
 
 // EXERCÍCIO 11
