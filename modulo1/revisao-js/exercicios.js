@@ -143,7 +143,12 @@ function retornaSegundoMaiorESegundoMenor(array) {
 
 // EXERCÍCIO 11
 function retornaChamadaDeFilme(filme) {
-   
+    const novaAtores = []
+        for(let palavra of filme.atores){
+            novaAtores.push(" "+ palavra)
+        }
+        let chamada = `Venha assistir ao filme ${filme.nome}, de ${filme.ano}, dirigido por ${filme.diretor} e estrelado por${novaAtores}.`
+    return chamada   
 }
 
 // EXERCÍCIO 12
