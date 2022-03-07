@@ -88,13 +88,16 @@ function retornaNPrimeirosPares(n) {
        if (i%2 === 0){
            pares.push(i)
        }
-       
    }return pares
 }
 
 // EXERCÍCIO 09
 function classificaTriangulo(ladoA, ladoB, ladoC) {
-
+   if((ladoA+ladoB)/ladoC===2){
+    return "Equilátero"
+   } else if (ladoA!==ladoB && ladoC!==ladoB && ladoA!==ladoC){
+    return "Escaleno"
+   } return "Isósceles"
 }
 
 // EXERCÍCIO 10
