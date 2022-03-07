@@ -21,13 +21,26 @@ function retornaArrayOrdenado(array) {
 }
 
 // EXERCÍCIO 04
-function retornaNumerosPares(array) {
+function retornaNumerosPares(array){
     
 }
+// function retornaNumerosPares(array) {        Desafio
+//     const par = []
+//     for (let i = 0; i < array.length; i++) {
+//         if (array[i]%2 === 0){
+//             par.push(array[i])
+//         } 
+//     } return par
+// }
 
 // EXERCÍCIO 05
 function retornaNumerosParesElevadosADois(array) {
- 
+    const par = []
+     for (let i = 0; i < array.length; i++) {
+         if (array[i]%2 === 0){
+            par.push(array[i]*array[i])
+        } 
+    } return par
 }
 
 // EXERCÍCIO 06
