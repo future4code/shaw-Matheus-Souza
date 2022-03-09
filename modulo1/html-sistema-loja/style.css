@@ -1,0 +1,81 @@
+html, body {
+    min-height: 100%;
+}
+body {
+    padding: 0;
+    margin: 0;
+}
+footer{
+    position: absolute;
+    bottom: 0;
+    background-color: white;
+    color: rgb(0, 0, 0);
+    width: 100%;
+    height: 200px;    
+    text-align: center;
+    line-height: 40px;
+}
+img{
+    max-height:100%;
+    max-width:100%;
+}
+h2{
+    margin: 50px;
+}
+.icones-redes{
+    height:70px;
+    width:70px;
+}
+.imagens-estoque{
+    margin: 10px 50px 5px 25px;
+    height:200px;
+    width:200px;
+}
+.logo-cabecalho{
+    position: relative;
+    top: 0;
+    background-color: white;
+    width: 100%;
+    height: 250px; 
+    text-align: center;
+}
+.fundo-branco{
+    background-color: white;
+}
+.fundo-off-white{
+    background-color: whitesmoke;
+}
+.corpo{
+    margin: 50px;
+    padding-left: 100px;
+    padding-right: 100px; 
+}
+.fonte-24{
+    font-size: 24px;
+}
+.fonte-18{
+    font-size: 18px;
+}
+.borda{
+    border: 3px outset rgb(46, 44, 45);
+    border-radius: 12px;
+    font: bold 15px sans-serif;
+    margin: 2px;
+    padding: 3px;
+    outline-offset: 10px;
+}
+.tabela{
+    margin: 40px;
+}
+.borda-estoque{
+    border: 4px outset rgb(46, 44, 45);
+    border-radius: 1px;
+    font: bold 15px sans-serif;
+    padding: 4px;
+    outline-offset: 10px;
+}
+.elementos-tabela{
+    padding: 40px;
+    font-size: 21px;
+    text-align: center;
+}
