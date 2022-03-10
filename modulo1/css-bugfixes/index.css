@@ -106,6 +106,7 @@ div:last-child {
 }
 
 table {
+    margin: 0 auto;
     width: 60%;
 }
 td{
@@ -140,7 +141,10 @@ td img{
     border-bottom-width: 4px;
 }
 
-
+#div-back-button{
+    margin-top: 100px;
+    text-align: center;
+}
 #back-button {
     background-color: white;
     width: 100px;
