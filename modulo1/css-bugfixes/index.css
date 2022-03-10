@@ -71,7 +71,9 @@ div img {
     color: white;
 }
 .texto-descricao {
-    margin: 0px 400px; 
+    margin: 0 auto;
+    width: 200px; 
+    /* background-color: #635a3d; */
 }
 
 #container-de-descricao>ol {
@@ -104,7 +106,9 @@ div:last-child {
 table {
     width: 60%;
 }
-
+td{
+    text-align: center;
+}
 td button {
     background-color: #fadf63;
     width: 150px;
