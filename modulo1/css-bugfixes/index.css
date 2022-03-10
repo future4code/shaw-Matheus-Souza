@@ -117,6 +117,12 @@ td button {
     border-radius: 5px;
     color: black;
 }
+td button:hover{
+    background-color: #a89643;
+}
+td button:active{
+    font: white;
+}
 td img{
     height: 50px;
     width: 50px;
