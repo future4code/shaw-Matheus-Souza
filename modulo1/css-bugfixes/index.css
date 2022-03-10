@@ -59,6 +59,12 @@ div>p:first-child {
     height: 25px;
     width: 25;
 }
+.icone:hover{
+   opacity: 50%;
+}
+.icone:active{
+    opacity: 100%;
+}
 
 
 /** 
