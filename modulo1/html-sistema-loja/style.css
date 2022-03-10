@@ -5,8 +5,89 @@ body {
     padding: 0;
     margin: 0;
 }
+
+img{
+    max-height:100%;
+    max-width:100%;
+}
+h1{
+    text-align: center;
+    margin-left: 40px;
+    padding-left: 50px;
+    padding-right: 50px; 
+}
+h2{
+    margin-left: 40px;
+    margin-bottom: 40px;
+    padding-left: 50px;
+    padding-right: 50px; 
+}
+.fundo-off-white{
+    background-color: whitesmoke;
+}
+.header{
+    overflow: hidden;
+    background-color: white;
+    padding: 20px 10px;
+}
+.header a {
+    float: left;
+    color: black;
+    text-align: center;
+    padding: 12px;
+    text-decoration: none;
+    font-size: 21px;
+    font-weight: bold;
+    line-height: 25px;
+    border-radius: 4px;
+}
+.header-right {
+    padding-top: 60px;
+    padding-right: 20px;
+    padding-left: 20px;
+    float: right;
+}
+.header a:hover {
+    background-color: #ddd;
+    color: black;
+}
+.logo{
+    margin-left: 25px;
+    height:150px;
+    width:300px;
+    
+}
+.fundo-branco{
+    background-color: white;
+}
+.fonte-24{
+    font-size: 24px;
+}
+.texto-principal{
+    text-align: left;
+    font: bold 21px sans-serif;
+    padding: 20px 70px;
+    margin-right: 60px;
+    margin-left: 80px;
+}
+.perdigoto{
+    float: right;
+    padding: 20px 50px;
+    margin-right: 50px;
+    margin-left: 40px;
+    height:500px;
+    width:200px;
+}
+.borda{
+    border: 3px outset rgb(46, 44, 45);
+    border-radius: 6px;
+    font: bold 15px sans-serif;
+    margin: 2px;
+    padding: 3px;
+    outline-offset: 10px;
+}
 footer{
-    position: absolute;
+    position: relative;
     bottom: 0;
     background-color: white;
     color: rgb(0, 0, 0);
@@ -15,67 +96,42 @@ footer{
     text-align: center;
     line-height: 40px;
 }
-img{
-    max-height:100%;
-    max-width:100%;
-}
-h2{
-    margin: 50px;
-}
 .icones-redes{
     height:70px;
     width:70px;
 }
-.imagens-estoque{
-    margin: 10px 50px 5px 25px;
-    height:200px;
-    width:200px;
-}
-.logo-cabecalho{
-    position: relative;
-    top: 0;
-    background-color: white;
-    width: 100%;
-    height: 250px; 
-    text-align: center;
-}
-.fundo-branco{
-    background-color: white;
-}
-.fundo-off-white{
-    background-color: whitesmoke;
-}
-.corpo{
-    margin: 50px;
-    padding-left: 100px;
-    padding-right: 100px; 
-}
-.fonte-24{
-    font-size: 24px;
-}
-.fonte-18{
-    font-size: 18px;
-}
-.borda{
-    border: 3px outset rgb(46, 44, 45);
-    border-radius: 12px;
-    font: bold 15px sans-serif;
-    margin: 2px;
-    padding: 3px;
-    outline-offset: 10px;
-}
 .tabela{
-    margin: 40px;
+    margin-left: 50px;
 }
 .borda-estoque{
     border: 4px outset rgb(46, 44, 45);
-    border-radius: 1px;
+    border-radius: 3px;
     font: bold 15px sans-serif;
     padding: 4px;
     outline-offset: 10px;
 }
 .elementos-tabela{
     padding: 40px;
-    font-size: 21px;
+    font: bold 18px sans-serif;
     text-align: center;
+}
+.imagens-estoque{
+    margin: 10px 10px 5px 25px;
+    margin-right: 50px;
+    margin-left: 50px;
+    height:200px;
+    width:200px;
+}
+.caixas-acoes{
+    font: bold 15px sans-serif;
+    margin: 15px;
+    padding-left: 10px;
+}
+.funcionarios{
+    font: bold 15px sans-serif;
+    margin: 15px;
+    padding-left: 10px;
+}
+.vazio{
+    margin: 400px;
 }
