@@ -132,6 +132,12 @@ td img{
     margin-top: 20px;
     height: 100px;
 }
+#borda-input{
+    border-top-width: 0;
+    border-left-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 4px;
+}
 
 
 #back-button {
