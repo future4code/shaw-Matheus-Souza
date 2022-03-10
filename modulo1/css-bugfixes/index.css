@@ -79,6 +79,8 @@ div>p:first-child {
 }
 
 #container-de-descricao>ol {
+    width: 230px;
+    margin: 0 auto;
     padding: 15px 0px;
 }
 
