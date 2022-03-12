@@ -1,0 +1,27 @@
+/* Propriedades Gerais */
+html, body {
+    min-height: 100%;
+}
+body{
+    margin: 0; 
+    padding: 0;
+    background-color: whitesmoke;
+}
+header { /*Cabeçalho*/
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    background-color: rgb(150, 70, 241);
+    height: 100px;
+    font-family: 'Roboto', sans-serif;
+}
+footer{/*Rodapé*/
+    position: relative;
+    top: 80vh;
+    overflow: hidden;
+    background-color: rgb(150, 70, 241);
+    height: 100px;
+}
+.menu-header{
+    padding: 0 50px;
+}
