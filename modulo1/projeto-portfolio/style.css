@@ -6,22 +6,183 @@ body{
     margin: 0; 
     padding: 0;
     background-color: whitesmoke;
+    font-family: 'Roboto', sans-serif;
+}
+h2{
+    text-align: center;
+    margin: 40px auto;
+}
+h3{
+    text-align: center;
+    margin: 25px;
+}
+.fonte-sublinha{
+ text-decoration: underline;
 }
 header { /*Cabeçalho*/
-    display: flex;
+    display:flex;
+    flex-flow: row wrap;
     align-items: center;
-    overflow: hidden;
+    justify-content: space-between;
+    /* overflow: hidden; */
+    background-color: rgb(150, 70, 241);
+    height: 200px;
+    font: 18px 'Roboto', sans-serif;
+    color: white;
+    
+}
+header div{
+    /* background-color: aqua; */
+    margin: 0 auto;
+    padding: 0 20px;
+    width: 410px;
+}
+.img-header{
+    width: 70px;
+}
+.menu-header{
+    float: right;
+}
+.botao-header{
+    background-color: rgb(150, 70, 241);
+    width: 130px;
+    height: 30px;
+    border-width: 0;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+}
+.botao-header:hover{
+    /* /* border-top-width: 0; */
+    border-bottom-width: 3px;
+    border-color: white;
+    /* border-left-width: 0;
+    border-right-width: 0; */
+    /* text-decoration:  underline; */
+}
+.div-titulo{
+    /* background-color: bisque; */
+    margin: 0 auto;
+    border: 0;
+    height: 100%;
+    text-align: center;  
+}
+.div-titulo h1{
+    padding: 0 30px;
+    margin-top: 70px;
+
+}
+.div-titulo h2{
+    padding: 0 30px;
+    font-weight: lighter;
+}
+.div-desenho{
+    text-align: center;
+    height: 400px;
+}
+.perfil-desenho{
+    /* background-color: aquamarine; */
+    width: 400px;
+}
+.apresentacao{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(150, 70, 241);
+    text-align: center;
+    padding: 60px 0;
+    height: 100%;
+    line-height: 25px;
+    color: white;
+}
+.apresentacao div{
+    /* background-color: aquamarine; */
+    font-size: large;
+    width: 50%;
+    /* margin: 0 5px;
+    padding: 0 5px; */
+}
+.espaco{
     background-color: rgb(150, 70, 241);
     height: 100px;
-    font-family: 'Roboto', sans-serif;
+}
+.habilidades{
+    display:flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 auto;
+    width: 70vw;
+}
+.habilidades div{
+    /* background-color: aqua; */
+    text-align: center;
+    margin: 20px auto;
+    padding: 10px 30px;
+    width: 200px;
+    border-radius: 10px;
+    border: 5px outset blueviolet;
+}
+.formacao{
+    display:flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 auto;
+    width: 70vw;
+}
+.formacao div{
+ /* background-color: aqua; */
+    text-align: center;
+    margin: 0px auto;
+    padding: 20px 30px;
+    width: 200px;
+    border-radius: 10px;
+    border: 5px outset blueviolet;
+}
+.formacao img{
+    width: 150px;
 }
 footer{/*Rodapé*/
     position: relative;
-    top: 80vh;
+    top: 60vh;
     overflow: hidden;
+    display:flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 auto;
     background-color: rgb(150, 70, 241);
-    height: 100px;
+    height: 100%;
 }
-.menu-header{
-    padding: 0 50px;
+footer div{
+    /* background-color: aqua; */
+    margin: 0 auto;
+    padding: 0 auto;
+    display: flex;
+    align-items: center;
+}
+footer p{
+    display: inline;
+    padding: 20px;
+    width: 260px;
+    color: white;
+    line-height: 22px;
+}
+#foto{
+    width: 140px;
+    display: inline;
+}
+#div-redes{
+    /* background-color: aqua; */
+    display: block;
+    align-items: center;    
+}
+.me-siga{
+    /* background-color: bisque; */
+    padding: 0;
+    width: 200px;
+    height: 50px;
+    font-weight: bolder;
 }
