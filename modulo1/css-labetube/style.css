@@ -1,0 +1,139 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+body{
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: 60px 1fr 60px;
+}
+
+/* Definições para o Header*/
+
+header{
+    height: 60px;
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgb(253, 44, 29);
+}
+.icone-labetube{
+    display: flex;
+    align-items: center;
+    margin: 0 20px;
+    font-size: 21px;
+    font-weight: bolder;
+}
+.icone-labetube img{
+    width: 30px;
+    margin: 0 10px;
+}
+.pesquisa{
+    display: flex;
+    align-items: center;
+}
+.pesquisa input{
+    width: 40vw;
+    height: 25px;
+}
+.pesquisa button{
+    background-color: whitesmoke;
+    border-width: 1px;
+    border-radius: 3px;
+    width: 40px;
+    height: 30px;
+}
+.pesquisa button:active{
+    background-color: rgb(204, 203, 203) ;
+}
+.pesquisa img{
+    width: 20px;
+}
+.login{
+    border: 2px outset rgb(46, 44, 45);
+    border-radius: 4px;
+    background-color: whitesmoke;
+    font: bold 15px sans-serif;
+    margin: 2px 30px;
+    padding: 3px;
+    outline-offset: 10px;
+}
+
+/* Definições para o Main*/
+
+main{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+}
+.grid-pai{
+    display: grid;
+    flex-wrap: wrap;
+    grid-template-columns: repeat(4, 1fr);
+    row-gap: 20px;
+    column-gap: 20px;
+}
+.card-video{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 350px;
+    box-shadow: 2px 2px 5px darkgrey;
+}
+.card-video video{
+    width: 100%;
+}
+.card-video h2{
+    margin:15px auto;
+}
+.card-video:hover{
+    border: 3px outset rgb(253, 44, 29) ;
+    border-radius: 3px;
+    box-shadow: 4px 4px 10px darkgrey;
+}
+
+/* Definições para o Footer*/
+
+footer{
+    background-color: rgb(253, 44, 29);
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Definições pag video 1*/
+
+.card-video1{
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    width: 900px;
+    box-shadow: 2px 2px 5px darkgrey;
+}
+.card-video1 video{
+    width: 100%;
+}
+.card-video1 h2{
+    margin:15px;
+}
+
+/* Definições pag video 2*/
+
+.card-video2{
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    width: 900px;
+    box-shadow: 2px 2px 5px darkgrey;
+}
+.card-video2 video{
+    width: 100%;
+}
+.card-video2 h2{
+    margin:15px;
+}
