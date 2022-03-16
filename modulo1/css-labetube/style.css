@@ -13,17 +13,25 @@ body{
 /* Definições para o Header*/
 
 header{
-    height: 60px;
+    min-height: 1em;
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(253, 44, 29);
+}
+#container-head{
+    /* background-color: aqua; */
+    width: 80vw;
+    padding: 5px;
     display: flex;
     flex-flow: row wrap;
     align-items: center;
     justify-content: space-between;
-    background-color: rgb(253, 44, 29);
 }
 .icone-labetube{
     display: flex;
     align-items: center;
-    margin: 0 20px;
     font-size: 21px;
     font-weight: bolder;
 }
@@ -36,7 +44,7 @@ header{
     align-items: center;
 }
 .pesquisa input{
-    width: 40vw;
+    width: 25vw;
     height: 25px;
 }
 .pesquisa button{
@@ -57,7 +65,7 @@ header{
     border-radius: 4px;
     background-color: whitesmoke;
     font: bold 15px sans-serif;
-    margin: 2px 30px;
+    margin: 2px 0px;
     padding: 3px;
     outline-offset: 10px;
 }
@@ -68,14 +76,16 @@ main{
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 40px;
+    padding: 20px;
 }
-.grid-pai{
-    display: grid;
+.flex-pai{
+    width: 80vw;
+    display: flex;
     flex-wrap: wrap;
-    grid-template-columns: repeat(4, 1fr);
+    align-items: center;
+    justify-content: center;
     row-gap: 20px;
-    column-gap: 20px;
+    column-gap: 20px 0;
 }
 .card-video{
     display: flex;
@@ -99,41 +109,134 @@ main{
 /* Definições para o Footer*/
 
 footer{
+    min-height: 1em;
+    width: 100%;
     background-color: rgb(253, 44, 29);
-    height: 60px;
     display: flex;
     align-items: center;
     justify-content: center;
+    text-align: center;
 }
 
-/* Definições pag video 1*/
+/* Definições pag video*/
 
-.card-video1{
+.card-video-solo{
     display: flex;
     flex-direction: column;
     align-items: left;
-    width: 900px;
+    width: 50vw;
     box-shadow: 2px 2px 5px darkgrey;
 }
-.card-video1 video{
+.card-video-solo video{
     width: 100%;
 }
-.card-video1 h2{
+.card-video-solo h2{
     margin:15px;
 }
 
-/* Definições pag video 2*/
+/* Definições para uso em 440px a 370px wide - Pagina Inicial*/
 
-.card-video2{
-    display: flex;
-    flex-direction: column;
-    align-items: left;
-    width: 900px;
-    box-shadow: 2px 2px 5px darkgrey;
+@media screen  and (min-device-width:310px) and (max-device-width:440px){
+
+    #container-head{
+        /* background-color: aqua; */
+        width: 100vw;
+        padding: 5px;
+        display: flex;
+        flex-flow: row wrap;
+        align-items: center;
+        justify-content: space-between;
+    }
 }
-.card-video2 video{
-    width: 100%;
+
+/* Definições para uso em 2285px a 2560px wide - Pagina Inicial*/
+
+@media screen  and (min-device-width:2285px) and (max-device-width:2560px){
+
+    .flex-pai{
+        width: 70vw;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        row-gap: 20px;
+        column-gap: 20px;
+    }
 }
-.card-video2 h2{
-    margin:15px;
+
+/* Definições para uso em 1920px a 320px wide - Pagina Video*/
+
+@media screen  and (min-device-width:1140px) and (max-device-width:1920px){
+
+    .card-video-solo{
+        display: flex;
+        flex-direction: column;
+        align-items: left;
+        width: 70vw;
+        box-shadow: 2px 2px 5px darkgrey;
+    }
+    .card-video-solo video{
+        width: 100%;
+    }
+    .card-video-solo h2{
+        margin:15px;
+    }
+}
+@media screen  and (min-device-width:820px) and (max-device-width:1139px){
+
+    .card-video-solo{
+        display: flex;
+        flex-direction: column;
+        align-items: left;
+        width: 80vw;
+        box-shadow: 2px 2px 5px darkgrey;
+    }
+    .card-video-solo video{
+        width: 100%;
+    }
+    .card-video-solo h2{
+        margin:15px;
+    }
+}
+@media screen  and (min-device-width:445px) and (max-device-width:819px){
+
+    .card-video-solo{
+        display: flex;
+        flex-direction: column;
+        align-items: left;
+        width: 90vw;
+        box-shadow: 2px 2px 5px darkgrey;
+    }
+    .card-video-solo video{
+        width: 100%;
+    }
+    .card-video-solo h2{
+        margin:15px;
+    }
+}
+@media screen  and (min-device-width:320px) and (max-device-width:444px){
+
+    .card-video-solo{
+        display: flex;
+        flex-direction: column;
+        align-items: left;
+        width: 90vw;
+        box-shadow: 2px 2px 5px darkgrey;
+    }
+    .card-video-solo video{
+        width: 100%;
+    }
+    .card-video-solo h2{
+        margin:5px;
+    }
+
+    footer{
+        min-height: 12vh;
+        width: 100%;
+        background-color: rgb(253, 44, 29);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
 }
