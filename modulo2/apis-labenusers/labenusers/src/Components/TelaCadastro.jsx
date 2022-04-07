@@ -38,11 +38,13 @@ class TelaCadastro extends React.Component{
             >
                 <h3>Cadastre-se</h3>
                 <input
+                    type="text"
                     placeholder='Nome'
                     value={this.props.inputNome}
                     onChange={this.props.updateNome}
                 />
                 <input
+                    type="email"
                     placeholder='Email'
                     value={this.props.inputEmail}
                     onChange={this.props.updateEmail}

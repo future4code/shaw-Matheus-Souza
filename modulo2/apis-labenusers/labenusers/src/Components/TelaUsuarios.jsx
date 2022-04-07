@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
+import DetalheUser from './DetalhesUser';
 
 const MainContainer = styled.div`
     display: ${(props) => props.mostrar === false ? 'none' : 'flex'};
@@ -55,38 +56,61 @@ class TelaUsuarios extends React.Component{
         const listaUsuarios = this.props.usuarios.map((usuario) =>{
             return(
                 <li>
-                    {usuario.name} 
+                    <span 
+                        onClick={() => this.props.pagDetalhe(usuario.id)}
+                    >{usuario.name} </span>
                     <button
-                        onClick={() => this.props.deleteUsuario(usuario.id)}
+                        onClick={() => this.props.deleteUser(usuario.id)}
                     >X</button>
                 </li>
             )   
         })
 
         return(
-            <MainContainer
-                mostrar={this.props.mostrar}
-            >
-                <ListaUsuarios>
-                    <ul>
-                        {listaUsuarios}
-                    </ul>
-                </ListaUsuarios>
-                <BuscaUsuarios>
-                    <h3>Procurar Usuário</h3>
-                    <div>
-                        <input
-                            placeholder='Digite o nome exato'
-                            value={this.props.nomeBusca}
-                            onChange={this.props.updateBusca}
+            <div>
+                {this.props.pgUsuarios === true ? (
+                    <MainContainer mostrar={this.props.mostrar} >
+                        <ListaUsuarios>
+                            <ul>
+                                {listaUsuarios}
+                            </ul>
+                        </ListaUsuarios>
+                        <BuscaUsuarios>
+                            <h3>Procurar Usuário</h3>
+                            <div>
+                                <input
+                                    type="text"
+                                    placeholder='Digite o nome exato'
+                                    value={this.props.nomeBusca}
+                                    onChange={this.props.updateBusca}
+                                />
+                                <button
+                                    onClick={this.props.searchUsers}
+                                >
+                                    Buscar
+                                </button>
+                            </div>
+                        </BuscaUsuarios>   
+                    </MainContainer> 
+                    ) : (
+                        <DetalheUser
+                            idUsuario={this.props.idUsuario} 
+                            detalheUser={this.props.detalheUser}
+                            pagDetalhe={this.props.pagDetalhe}
+                            pgUsuarios={this.props.pgUsuarios}
+                            getUserDetail={this.props.getUserDetail}
+                            voltaLista={this.props.voltaLista}
+                            novoNome={this.props.novoNome}
+                            novoEmail={this.props.novoEmail}
+                            editNome={this.props.editNome}
+                            editEmail={this.props.editEmail}
+                            editUser={this.props.editUser}
+                            edicao={this.props.edicao}
+                            abreEdicao={this.props.abreEdicao}
                         />
-                        <button>
-                            Buscar
-                        </button>
-                    </div>
-                </BuscaUsuarios>                
-            </MainContainer>
-        )
+                    )
+                }
+            </div>)  
     }
 }
 
