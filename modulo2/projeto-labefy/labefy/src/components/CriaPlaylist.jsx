@@ -9,14 +9,7 @@ class CriaPlaylist extends React.Component {
     render(){
       return (
         <div>
-            <input
-                placeholder='Nova Playlist'
-                value={this.props.novaPlay}
-                onChange={this.props.updateNovaPlay}
-            />
-            <button
-                onClick={this.props.createPlaylist}
-            >Adicionar</button>
+            
         </div>
       );
     }
