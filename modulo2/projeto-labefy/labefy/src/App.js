@@ -2,8 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 import lupa from './img/lupa.png'
+import home from './img/home.png'
+import labefy from './img/labefy.png'
 import DetalhePlay from './components/DetalhePlaylist';
 import Footer from './components/Footer';
+import PagInicio from './components/PaginaInicio'
 
 const header = {
   headers: {
@@ -12,8 +15,9 @@ const header = {
 };
 const MainContainer = styled.div`
   display:flex;
+  height: 100vh;
   flex-direction: column;
-  justify-content:flex-start;
+  justify-content:space-between;
 `
 const ContainerTopo = styled.div`
   display:flex;
@@ -21,13 +25,13 @@ const ContainerTopo = styled.div`
   justify-content:flex-start;
   nav{
     width: 300px;
-    height: 90vh;
     background-color: black;
     color: white;
   }
   main{
     width: 90%;
-    background-color: #444444;
+    background-color: #111111;
+    background-image: linear-gradient(to top, rgba(17,17,17,0) 25%, #674ea7);
   }
 `
 const Botoes = styled.div`
@@ -37,6 +41,10 @@ const Botoes = styled.div`
   margin: 25px;
   border-bottom: 1px solid white;
   padding-bottom:10px;
+  .logo{
+    width: 150px;
+    margin-bottom: 25px;
+  }
   .buscar{
     display:flex;
     flex-direction: row;
@@ -45,8 +53,8 @@ const Botoes = styled.div`
     margin-bottom: 15px;
     opacity:80%;
     img{
-      width: 15px;
-      height:15px;
+      width: 20px;
+      height:20px;
       margin-right: 15px;
       margin-left: 2px;
     }
@@ -62,6 +70,20 @@ const Botoes = styled.div`
     opacity:80%;
     input{
       border-radius: 6px;
+    }
+  }
+  .inicio{
+    display:flex;
+    flex-direction: row;
+    justify-content:flex-start;
+    align-items:center;
+    margin-bottom: 15px;
+    opacity:80%;
+    img{
+      width: 20px;
+      height:20px;
+      margin-right: 15px;
+      margin-left: 2px;
     }
   }
   div{
@@ -91,11 +113,13 @@ const Lista = styled.div`
   button{
     border-radius:30px;
     margin-left: 10px;
+    height: 25px;
   }
 `
 
 class App extends React.Component {
   state={
+    inicio: true,
     novaPlay:"",
     nomeBusca:"",
     playlists:[],
@@ -110,6 +134,7 @@ class App extends React.Component {
     urlTrack:"",
     playMusica:false,
     musicaTocada:"",
+    tocandoMusica:false,
   }
   componentDidMount() {
     this.getAllPlaylist();
@@ -138,9 +163,14 @@ class App extends React.Component {
   mostraInputAdd = () => {
     this.setState({ inputAdd: !this.state.inputAdd });
   };
-  mostraPlayMusica = (url) => {
-    this.setState({ playMusica: true });
-    this.setState({ musicaTocada: url });
+  mostraInicio = () => {
+    this.setState({ inicio: true });
+  };
+  mostraPlayMusica = (track) => {
+    this.setState({ playMusica: !this.state.playMusica });
+    this.setState({ musicaTocada: track });
+    this.setState({ tocandoMusica: !this.state.tocandoMusica });
+    console.log(this.state.tocandoMusica)
     // console.log(this.state.playMusica)
     // console.log(this.state.musicasPlay)
     // console.log(url)
@@ -201,8 +231,9 @@ class App extends React.Component {
     axios.get(url,header).then((resp) => {
       this.setState({detalhePlay: resp.data.result.playlist[0]})
       this.setState({inputAdd: false})
-      // console.log(this.state.detalhePlay)
+      this.setState({inicio: false})
       this.getPlaylistTracks(id)
+      console.log(this.state.detalhePlay)
     }).catch(err => {
       console.log(err);
     });
@@ -212,7 +243,7 @@ class App extends React.Component {
     axios.get(url,header).then(resp => {
         this.setState({musicasPlay:resp.data.result.tracks})
         // console.log(this.state.musicasPlay)
-        // console.log(resp.data)
+        console.log(resp.data)
       })
       .catch(err => {
         console.log(err);
@@ -249,9 +280,10 @@ class App extends React.Component {
       }).catch((erro) => {
         console.log(erro)
       });
-    } else {
-      console.log(idList, idTrack)
-    }
+    } 
+    // else {
+    //   console.log(idList, idTrack)
+    // }
   };
 
   render(){
@@ -274,6 +306,14 @@ class App extends React.Component {
         <ContainerTopo>
           <nav>
             <Botoes>
+                <img className='logo' src={labefy} alt='Labefy'/>
+                <div 
+                  className='inicio'
+                  onClick={this.mostraInicio}
+                  >
+                  <img src={home} alt='Lupa'/>
+                    <spam>Início</spam>
+                </div>
                 {this.state.inputBuscar === false ? (
                   <div 
                     className='buscar'
@@ -317,21 +357,27 @@ class App extends React.Component {
             </Lista>   
           </nav>
           <main>
-              <DetalhePlay
-                detalhePlay={this.state.detalhePlay}
-                musicasPlay={this.state.musicasPlay}
-                removeTrackFromPlaylist={this.removeTrackFromPlaylist}
-                inputAdd={this.state.inputAdd}
-                mostraInputAdd={this.mostraInputAdd}
-                addTrackToPlaylist={this.addTrackToPlaylist}
-                nomeTrack={this.state.nomeTrack}
-                artistaTrack={this.state.artistaTrack}
-                urlTrack={this.state.urlTrack}
-                updateNovaTrack={this.updateNovaTrack}
-                updateArtistaTrack={this.updateArtistaTrack}
-                updateUrlTrack={this.updateUrlTrack}
-                mostraPlayMusica={this.mostraPlayMusica}
-              />     
+              {this.state.inicio === true ? (    
+                  <PagInicio/>
+              ) : (
+                <DetalhePlay
+                  detalhePlay={this.state.detalhePlay}
+                  musicasPlay={this.state.musicasPlay}
+                  removeTrackFromPlaylist={this.removeTrackFromPlaylist}
+                  inputAdd={this.state.inputAdd}
+                  mostraInputAdd={this.mostraInputAdd}
+                  addTrackToPlaylist={this.addTrackToPlaylist}
+                  nomeTrack={this.state.nomeTrack}
+                  artistaTrack={this.state.artistaTrack}
+                  urlTrack={this.state.urlTrack}
+                  updateNovaTrack={this.updateNovaTrack}
+                  updateArtistaTrack={this.updateArtistaTrack}
+                  updateUrlTrack={this.updateUrlTrack}
+                  mostraPlayMusica={this.mostraPlayMusica}
+                  resetaPlay={this.resetaPlay}
+                  tocandoMusica={this.state.tocandoMusica}
+                  /> 
+              )}  
           </main>
         </ContainerTopo>
         <Footer

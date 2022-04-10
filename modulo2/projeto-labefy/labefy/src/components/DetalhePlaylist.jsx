@@ -1,13 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
-import axios from 'axios';
 import play from '../img/play.png'
+import pause from '../img/pause.png'
 
 const MainContainer = styled.div`
     display: flex; 
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: flex-start;
+    height:80vh;
     margin: 25px;
     padding-bottom: 25px;
     border-radius: 15px;
@@ -41,6 +42,7 @@ const MainContainer = styled.div`
             display:flex;
             flex-direction: row;
             justify-content:space-between;
+            align-items: center;
             width: 75%;
         }
         .div2{
@@ -60,6 +62,13 @@ const MainContainer = styled.div`
             opacity:100%;
         }
     }
+`
+const SecondContainer = styled.div`
+    display: flex; 
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    width: 70%;
 `
 const InputAdd = styled.div`
     display: flex;
@@ -90,14 +99,19 @@ class DetalhePlay extends React.Component{
         const listaTracks = this.props.musicasPlay.map((nomes) =>{
             return(
                 <li>
-                    <img 
-                        onClick={() => this.props.mostraPlayMusica(nomes.url)} 
+                    {this.props.tocandoMusica === false ? (
+                        <img 
+                        onClick={() => this.props.mostraPlayMusica(nomes)} 
                         src={play} 
                         alt='Botão play'
                     />
-                    {/* <audio controls autoPlay>
-                        <source src={nomes.url} type="audio/mp3"/>   
-                    </audio>  */}
+                    ) : (
+                        <img 
+                        onClick={() => this.props.mostraPlayMusica(nomes)} 
+                        src={pause} 
+                        alt='Botão play'
+                    />
+                    )}
                     <div className='div1'>
                         <div className='div2'>
                             <span className='nome'>{nomes.name} </span>
@@ -114,38 +128,41 @@ class DetalhePlay extends React.Component{
 
         return(
                 <MainContainer>
-                    <h1>{this.props.detalhePlay.name}</h1>
-                    <p>{this.props.musicasPlay.length} Músicas</p>
-                    {this.props.inputAdd === false ? (
-                        <InputAdd onClick={this.props.mostraInputAdd}>
-                            <button>+</button>
-                            <spam> Adicionar Música</spam>
-                        </InputAdd>
-                         ) : (
-                        <InputAdd>
-                            <button 
-                                onClick={() => this.props.addTrackToPlaylist(this.props.detalhePlay.id)}
-                            >+</button>
-                            <div>
-                            <input
-                                placeholder='Nome da música'
-                                value={this.props.nomeTrack}
-                                onChange={this.props.updateNovaTrack}
-                            />
-                            <input
-                                placeholder='Nome do(a) artista'
-                                value={this.props.artistaTrack}
-                                onChange={this.props.updateArtistaTrack}
-                            />
-                            <input
-                                placeholder='Url do áudio'
-                                value={this.props.urlTrack}
-                                onChange={this.props.updateUrlTrack}
-                            />
-                            </div>
-                        </InputAdd>
-                    )}
-                    {listaTracks}
+                    <SecondContainer>
+                        <h1>{this.props.detalhePlay.name}</h1>
+                        <p>{this.props.musicasPlay.length} Músicas</p>
+                        {this.props.inputAdd === false ? (
+                            <InputAdd onClick={this.props.mostraInputAdd}>
+                                <button>+</button>
+                                <spam> Adicionar Música</spam>
+                            </InputAdd>
+                            ) : (
+                            <InputAdd>
+                                <button 
+                                    onClick={() => this.props.addTrackToPlaylist(this.props.detalhePlay.id)}
+                                >+</button>
+                                <div>
+                                <input
+                                    placeholder='Nome da música'
+                                    value={this.props.nomeTrack}
+                                    onChange={this.props.updateNovaTrack}
+                                />
+                                <input
+                                    placeholder='Nome do(a) artista'
+                                    value={this.props.artistaTrack}
+                                    onChange={this.props.updateArtistaTrack}
+                                />
+                                <input
+                                    placeholder='Url do áudio'
+                                    value={this.props.urlTrack}
+                                    onChange={this.props.updateUrlTrack}
+                                />
+                                </div>
+                            </InputAdd>
+                        )}
+                        {listaTracks}
+                    </SecondContainer>
+                   
                 </MainContainer>
             )
     }
