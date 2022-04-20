@@ -1,0 +1,30 @@
+.App {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: #212121;
+  height: 100vh;
+}
+.MainContainer{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border: 3px solid black;
+  background-color: whitesmoke;
+  border-radius: 15px;
+  height: 700px;
+  width: 500px;
+}
+.Botões{
+  display: flex;
+  justify-content: space-between;
+  width: 50%;
+  margin-top: 30px;
+}
+.Botões button{
+  border-radius: 25px;
+  padding: 15px;
+}
