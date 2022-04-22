@@ -1,5 +1,6 @@
 .App {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
@@ -17,14 +18,5 @@
   border-radius: 15px;
   height: 700px;
   width: 500px;
-}
-.Botões{
-  display: flex;
-  justify-content: space-between;
-  width: 50%;
-  margin-top: 30px;
-}
-.Botões button{
-  border-radius: 25px;
-  padding: 15px;
+  padding: 20px 0;
 }

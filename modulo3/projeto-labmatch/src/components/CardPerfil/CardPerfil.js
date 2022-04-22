@@ -3,9 +3,9 @@ import {MainContainer, Background} from './style'
 function CardPerfil(props) {
 
   return (
-    <MainContainer >
+    <MainContainer animacao={props.animacao}>
         <Background src={props.perfil.photo}/>
-        <img src={props.perfil.photo}></img>
+        <img src={props.perfil.photo} alt='Foto de Perfil'></img>
         <div className='dadosPerfil' >
             <div className='NomeIdade'>
                 <h2>{props.perfil.name},  </h2>

@@ -7,12 +7,34 @@ export const MainContainer = styled.div`
     justify-content: center;
 	align-items: center;
 	position: relative;
-	height: 530px;
-    width: 400px;
+	height: 430px;
+    width: 350px;
     box-shadow: 5px 5px 10px black;
 	border-radius: 15px;
 	overflow: hidden;
 	transition: 0.5s;
+    animation-name: ${(props) => props.animacao};
+    animation-duration: 0.5s;
+    @keyframes caiEsquerda {
+        from{
+        opacity:1;
+        transform: translate(0) rotate(0);
+        }
+        to{
+        opacity: 0;
+        transform: translate(-200px) rotate(-20deg);
+        }   
+    }
+    @keyframes caiDireita {
+        from{
+        opacity:1;
+        transform: translate(0) rotate(0);
+        }
+        to{
+        opacity: 0;
+        transform: translate(200px) rotate(20deg);
+        }   
+    }
     img{
         width: 100%;
         display: block;
@@ -33,7 +55,6 @@ export const MainContainer = styled.div`
         z-index: 2;
         p{
             margin: 5px 20px;
-            font-size: 21px;
         }
     }
     .NomeIdade{
@@ -44,7 +65,7 @@ export const MainContainer = styled.div`
         margin: 0px 20px;
         h2{
             margin-bottom: 0;
-            font-size: 28px;
+            font-size: 21px;
         }
         p{
             margin-left: 10px;

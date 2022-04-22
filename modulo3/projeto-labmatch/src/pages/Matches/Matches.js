@@ -1,18 +1,30 @@
 import React, { useState,useEffect } from 'react'
 import axios from 'axios'
-import {MainContainer} from './styled'
+import Button from '@mui/material/Button';
+import GroupRemoveRoundedIcon from '@mui/icons-material/GroupRemoveRounded';
+import {MainContainer, Lista} from './styled'
 
 function Matches() {
     const [matches,setMatches] =useState([])
 
     const pegaMatch = () => {
-        axios.get("https://us-central1-missao-newton.cloudfunctions.net/astroMatch/darvas/matches")
+        axios.get("https://us-central1-missao-newton.cloudfunctions.net/astroMatch/matheus-souza/matches")
           .then(response => {
             setMatches(response.data.matches);
           })
           .catch(err => {
             console.log(err);
           });
+    }
+
+    const limpaMatchs =() => {
+      axios.put("https://us-central1-missao-newton.cloudfunctions.net/astroMatch/matheus-souza/clear")
+        .then(response => {
+          setMatches([]);
+        })
+        .catch(err => {
+          console.log(err);
+        });
     }
 
     const listaMatches = matches.map((perfil) =>{
@@ -30,7 +42,17 @@ function Matches() {
 
   return (
     <MainContainer>
-        {listaMatches}
+        <Lista>
+          {listaMatches}
+        </Lista>
+        <Button 
+          onClick={limpaMatchs} 
+          size="small" 
+          variant="outlined" 
+          startIcon={<GroupRemoveRoundedIcon/>}
+        >
+          Limpar Matches
+        </Button>
     </MainContainer>
   )
 }

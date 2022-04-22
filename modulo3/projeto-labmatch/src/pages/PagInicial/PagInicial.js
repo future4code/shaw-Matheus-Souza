@@ -1,45 +1,69 @@
 import axios from 'axios'
 import React, { useState,useEffect } from 'react'
+import ThumbUpRoundedIcon from '@mui/icons-material/ThumbUpRounded';
+import ThumbDownAltRoundedIcon from '@mui/icons-material/ThumbDownAltRounded';
 import CardPerfil from '../../components/CardPerfil/CardPerfil'
 import {MainContainer} from './styled'
+import Loading from '../../components/Loading.js/Loading';
 
 function PagInicial() {
-    const [mudaTela,setMudaTela] = useState(true)
-    const [perfil, setPerfil] = useState({})
+  const [mudaTela,setMudaTela] = useState(true)
+  const [perfil, setPerfil] = useState({})
+  const [animacao,setAnimacao] = useState('')
 
-    const escolhePessoa = (id) =>{
+  const escolhePessoa = (id) =>{
         const body = {
           id: id,
           choice: true
         }
-        axios.post('https://us-central1-missao-newton.cloudfunctions.net/astroMatch/darvas/choose-person',body).then(response => {
-            setMudaTela(!setMudaTela);
+        axios.post('https://us-central1-missao-newton.cloudfunctions.net/astroMatch/matheus-souza/choose-person',body).then(response => { 
+            setAnimacao('')  
           })
           .catch(err => {
             console.log(err);
           });
     }
-
     const pegaPerfil = () => {
-      axios.get("https://us-central1-missao-newton.cloudfunctions.net/astroMatch/darvas/person")
+      axios.get("https://us-central1-missao-newton.cloudfunctions.net/astroMatch/matheus-souza/person")
         .then(response => {
           setPerfil(response.data.profile);
+          setAnimacao('')  
         })
         .catch(err => {
           console.log(err);
         });
     }
-  
-    useEffect(() => {
+    const deslike = () => {
+      setAnimacao('caiEsquerda')
+      setMudaTela(!mudaTela)
       pegaPerfil()
+    }
+    const like = (id) => {
+      setAnimacao('caiDireita')
+      setMudaTela(!mudaTela)
+      escolhePessoa(id)
+    }
+    useEffect(() => {
+      pegaPerfil();
     },[mudaTela])
 
   return (
       <MainContainer>
-            <CardPerfil perfil={perfil}/>
+            <Loading></Loading>
+            <CardPerfil perfil={perfil} animacao={animacao}/>
             <div className='Botões'>
-                <button onClick={pegaPerfil}>Deslike</button>
-                <button onClick={() => escolhePessoa(perfil.id)}>Like</button>
+                <button 
+                  className='deslike' 
+                  onClick={deslike}
+                >
+                  <ThumbDownAltRoundedIcon color="error" size="large"/>
+                </button>
+                <button 
+                  className='like' 
+                  onClick={() => like(perfil.id)}
+                >
+                  <ThumbUpRoundedIcon color="success" size="large"/>
+                </button>
             </div>
       </MainContainer>
   )
