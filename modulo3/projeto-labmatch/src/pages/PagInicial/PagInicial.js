@@ -49,7 +49,7 @@ function PagInicial() {
 
   return (
       <MainContainer>
-            <Loading></Loading>
+            <Loading/>
             <CardPerfil perfil={perfil} animacao={animacao}/>
             <div className='Botões'>
                 <button 

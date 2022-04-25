@@ -8,28 +8,24 @@ function Matches() {
     const [matches,setMatches] =useState([])
 
     const pegaMatch = () => {
-        axios.get("https://us-central1-missao-newton.cloudfunctions.net/astroMatch/matheus-souza/matches")
-          .then(response => {
+        axios.get("https://us-central1-missao-newton.cloudfunctions.net/astroMatch/matheus-souza/matches").then(response => {
             setMatches(response.data.matches);
-          })
-          .catch(err => {
+          }).catch(err => {
             console.log(err);
           });
     }
 
     const limpaMatchs =() => {
-      axios.put("https://us-central1-missao-newton.cloudfunctions.net/astroMatch/matheus-souza/clear")
-        .then(response => {
+      axios.put("https://us-central1-missao-newton.cloudfunctions.net/astroMatch/matheus-souza/clear").then(response => {
           setMatches([]);
-        })
-        .catch(err => {
+        }).catch(err => {
           console.log(err);
         });
     }
 
     const listaMatches = matches.map((perfil) =>{
         return(
-            <div className='match'>
+            <div className='match' back={perfil.photo}>
                 <img src={perfil.photo} alt='foto de perfil'></img>
                 <p>{perfil.name}</p>
             </div>
@@ -50,8 +46,7 @@ function Matches() {
           size="small" 
           variant="outlined" 
           startIcon={<GroupRemoveRoundedIcon/>}
-        >
-          Limpar Matches
+        > Limpar Matches
         </Button>
     </MainContainer>
   )

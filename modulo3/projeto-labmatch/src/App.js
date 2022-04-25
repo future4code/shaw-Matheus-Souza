@@ -30,10 +30,7 @@ function App() {
           </TelaInicio>}
         </Header>
         {telaInicial ? 
-        <PagInicial/>
-        :
-        <Matches/>
-        }
+        <PagInicial/> : <Matches/>}
       </MainContainer>
     </AppMain>
   )

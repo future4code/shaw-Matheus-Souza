@@ -9,7 +9,6 @@ export const AppMain = styled.div`
     background-color: #212121;
     height: 100vh;
 `
-
 export const MainContainer = styled.div`
     display: flex;
     flex-direction: column;

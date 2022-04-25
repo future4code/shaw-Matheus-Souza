@@ -1,6 +1,5 @@
 import styled from 'styled-components'
 
-
 export const MainContainer = styled.div`
 	display: flex;
     flex-direction: column;
@@ -17,27 +16,26 @@ export const MainContainer = styled.div`
     animation-duration: 0.5s;
     @keyframes caiEsquerda {
         from{
-        opacity:1;
-        transform: translate(0) rotate(0);
+            opacity:1;
+            transform: translate(0) rotate(0);
         }
         to{
-        opacity: 0;
-        transform: translate(-200px) rotate(-20deg);
+            opacity: 0;
+            transform: translate(-200px) rotate(-20deg);
         }   
     }
     @keyframes caiDireita {
         from{
-        opacity:1;
-        transform: translate(0) rotate(0);
+            opacity:1;
+            transform: translate(0) rotate(0);
         }
         to{
-        opacity: 0;
-        transform: translate(200px) rotate(20deg);
+            opacity: 0;
+            transform: translate(200px) rotate(20deg);
         }   
     }
     img{
         width: 100%;
-        display: block;
         z-index: 1;
     }
     .dadosPerfil{

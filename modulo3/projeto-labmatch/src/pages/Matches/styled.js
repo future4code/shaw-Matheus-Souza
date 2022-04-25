@@ -1,6 +1,5 @@
 import styled from 'styled-components'
 
-
 export const MainContainer = styled.div`
 	display: flex;
     flex-direction: column;
@@ -8,14 +7,16 @@ export const MainContainer = styled.div`
     align-items: flex-start;
     text-align: start;
     color: black;
-    width: 90%;
+    width: 95%;
     height: 90%;
 `
 export const Lista = styled.div`
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    width: 100%;
+    width: 95%;
+    min-height: 90%;
+    overflow-y: scroll;
     .match{
         display: flex;
         flex-direction: row;
@@ -23,12 +24,13 @@ export const Lista = styled.div`
         align-items: center;
         text-align: center;
         font-weight: bold;
-        width: 100%;
+        width: 90%;
+        margin-left: 5%;
         transition: 0.2s;
         :hover{
             transition: 0.2s;
             background-color: #eeeeee;
-            transform: scale(1.1);
+            transform: scale(1.05);
         }
         img{
             width: 50px;

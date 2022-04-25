@@ -38,5 +38,4 @@ export const Conteudo = styled.div`
             transform: scale(1.9);
         }  
     }
-
 `
