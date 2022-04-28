@@ -1,6 +1,6 @@
 import React from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import { pagGerenciar, pagInicial } from '../../routes/coordinator'
+import { pagGerenciar, pagInicial, abreLogin } from '../../routes/coordinator'
 import { MainContainer } from './style'
 
 const Header = () => {
@@ -11,10 +11,21 @@ const Header = () => {
   return (
     <MainContainer>
         <h1>Labex</h1>
-        {params.page === "gerenciar" || params.modal === "novaViagem" ? 
-        <button onClick={()=>pagInicial(navegar)}>Logout</button>
+        {params.log === "logado" || params.modal === "novaViagem" || params.page === "gerenciar" 
+        // || params.modal === "inscricao" 
+        ? 
+        <div>
+          {params.modal === "novaViagem" || params.page === "gerenciar" || params.modal === "inscricao"  ? 
+          <button onClick={()=>pagInicial(navegar)}>Logout</button>
+          :
+          <div>
+            <button onClick={()=>pagGerenciar(navegar,"gerenciar")}>Gerenciar</button>
+            <button onClick={()=>pagInicial(navegar)}>Logout</button>
+          </div>
+          }         
+        </div>
         :
-        <button onClick={()=>pagGerenciar(navegar,"gerenciar")}>Login</button>
+        <button onClick={()=>abreLogin(navegar,"login")}>Login</button>
         }
     </MainContainer>
   )

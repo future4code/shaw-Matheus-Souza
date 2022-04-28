@@ -8,9 +8,11 @@ const Router = () => {
     <BrowserRouter>
         <Routes>
             <Route index element={<PaginaInicial/>}/>
-            <Route path="/:page" element={<PaginaGerenciar/>}/>
-            <Route path="/gerenciar/:modal" element={<PaginaGerenciar/>}/>
             <Route path="index/:modal" element={<PaginaInicial/>}/>
+            <Route path="/logado/:modal" element={<PaginaInicial/>}/>
+            <Route path="/logado//:page" element={<PaginaGerenciar/>}/>
+            <Route path="/:log" element={<PaginaInicial/>}/>
+            <Route path="/logado/gerenciar/:modal" element={<PaginaGerenciar/>}/>
         </Routes>
     </BrowserRouter>
   )

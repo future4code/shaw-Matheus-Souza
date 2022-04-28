@@ -1,13 +1,14 @@
 import React, {useEffect, useState} from 'react'
 import axios from 'axios'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import {CardViagem, MainContainer, ListContainer} from './style'
-import { abreInscrição } from '../../routes/coordinator'
+import { abreInscriçãoDeslogado, abreInscriçãoLogado } from '../../routes/coordinator'
 import planeta from '../../img/planeta.png'
 
 const ListaDeViagens = () => {
     const [viagens,setViagens] = useState([])
     const navegar = useNavigate()
+    const params = useParams()
 
     const pegaLista = ()=>{
         axios.get("https://us-central1-labenu-apis.cloudfunctions.net/labeX/matheus-souza-shaw/trips")
@@ -37,7 +38,12 @@ const ListaDeViagens = () => {
 
   return (
     <MainContainer>
-        <img src={planeta} onClick={()=>abreInscrição(navegar,"inscricao")}/>
+        {params.log === "logado"?
+        <img src={planeta} alt="planeta" onClick={()=>abreInscriçãoLogado(navegar,"inscricao")}/>
+        :
+        <img src={planeta} alt="planeta" onClick={()=>abreInscriçãoDeslogado(navegar, "inscricao")}/>
+        }
+        {/* <img src={planeta} onClick={()=>abreInscrição(navegar, "index","inscricao")}/> */}
         <ListContainer>
             {cardsViagens}
         </ListContainer>

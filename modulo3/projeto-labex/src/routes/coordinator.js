@@ -4,12 +4,21 @@ export const pagInicial = (navegar) => {
 export const voltarPag = (navegar) => {
     navegar(-1)
 }
-export const pagGerenciar = (navegar,page) => {
-    navegar(`/${page}`)
-}
-export const abreInscrição = (navegar,modal) => {
+export const abreInscriçãoDeslogado = (navegar,modal) => {
     navegar(`index/${modal}`)
 }
+export const abreInscriçãoLogado = (navegar,modal) => {
+    navegar(`/logado/${modal}`)
+}
+export const abreLogin = (navegar,modal) => {
+    navegar(`index/${modal}`)
+}
+export const areaLogado = (navegar,log) => {
+    navegar(`/${log}`, {replace:true})
+}
+export const pagGerenciar = (navegar,page) => {
+    navegar(`/logado//${page}`)
+}
 export const abreViagem = (navegar,modal) => {
-    navegar(`/gerenciar/${modal}`)
+    navegar(`/logado/gerenciar/${modal}`)
 }
