@@ -1,30 +1,21 @@
-import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+import React from 'react'
+import { useNavigate } from 'react-router-dom'
+import { PegaLista } from '../../customHooks/Requests'
+import { abreDetalhes } from '../../routes/coordinator'
+import { CardLista } from './style'
 
 const ListaGerencia = () => {
-    const [viagens,setViagens] = useState([])
-
-    const pegaLista = ()=>{
-        axios.get("https://us-central1-labenu-apis.cloudfunctions.net/labeX/matheus-souza-shaw/trips")
-        .then(resposta =>{
-            setViagens(resposta.data.trips)
-            console.log(resposta.data.trips)
-        }).catch(erro =>{
-            console.log(erro)
-        })
-    }
+    const viagens = PegaLista()
+    const navegar = useNavigate()
+   
     const listaGerenciavel = viagens.map((viagem)=>{
         return(
-            <div>
+            <CardLista onClick={()=>abreDetalhes(navegar,`${viagem.id}`)}>
                 <p><strong>Nome: </strong>{viagem.name}</p>
                 <button> excluir </button>
-            </div>
+            </CardLista>
         )
     })
-
-    useEffect(()=>{
-        pegaLista()
-    },[])
 
   return (
     <div>

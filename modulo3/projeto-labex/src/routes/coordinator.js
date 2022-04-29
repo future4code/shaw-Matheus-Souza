@@ -22,3 +22,6 @@ export const pagGerenciar = (navegar,page) => {
 export const abreViagem = (navegar,modal) => {
     navegar(`/logado/gerenciar/${modal}`)
 }
+export const abreDetalhes = (navegar,id) => {
+    navegar(`/logado//gerenciar/detalhes/${id}`)
+}
