@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import Header from '../../component/Header/Header'
 import ListaGerencia from '../../component/ListaGerencia/ListaGerencia'
 import CriarViagem from '../../modal/CriarViagem/CriarViagem'
-import { voltarPag, abreViagem, pagInicial } from '../../routes/coordinator'
+import { abreViagem, pagInicial, areaLogado } from '../../routes/coordinator'
 import { MainContainer } from './style'
 
 const PaginaGerenciar = () => {
@@ -23,7 +23,7 @@ const PaginaGerenciar = () => {
     <MainContainer>
         {params.modal === "novaViagem" ? <CriarViagem/> : null}
         <Header></Header>
-        <button onClick={()=>voltarPag(navegar)}>Voltar</button>
+        <button onClick={()=>areaLogado(navegar,"logado")}>Voltar</button>
         <button onClick={()=>abreViagem(navegar,"novaViagem")}>Criar Viagem</button>
         <h1>Viagens para gerenciar</h1>
         <ListaGerencia/>

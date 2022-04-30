@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import { aprovarCandidato, desaprovarCandidato, PegaDetalhe } from '../../customHooks/Requests'
-import { pagGerenciar, pagInicial, voltarPag } from '../../routes/coordinator'
+import { decisao, PegaDetalhe } from '../../customHooks/Requests'
+import { pagGerenciar, pagInicial } from '../../routes/coordinator'
 import { ListaCandidatos, MainContainer } from './styled'
 
 const DetalhesViagem = () => {
@@ -40,10 +40,10 @@ const DetalhesViagem = () => {
               <p><strong>País: </strong>{candidato.country}</p>
               <p><strong>Pofissão: </strong>{candidato.profession}</p>
               <p><strong>Motivação: </strong>{candidato.applicationText}</p>
-              <form onSubmit={()=> aprovarCandidato(id,candidato.id)}>
+              <form onSubmit={()=> decisao(id,candidato.id,true)}>
                 <button>Aprovado</button>
               </form>
-              <form onSubmit={()=> desaprovarCandidato(id,candidato.id)}>
+              <form onSubmit={()=> decisao(id,candidato.id,false)}>
                 <button>Reprovado</button>
               </form>
            </ListaCandidatos>
