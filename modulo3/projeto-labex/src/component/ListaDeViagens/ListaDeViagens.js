@@ -12,7 +12,7 @@ const ListaDeViagens = () => {
 
     const cardsViagens = viagens.map((viagem)=>{
         return(
-            <CardViagem>
+            <CardViagem key={viagem.id}>
                 <p><strong>Nome: </strong>{viagem.name}</p>
                 <p><strong>Descrição: </strong>{viagem.description}</p>
                 <p><strong>Planeta: </strong>{viagem.planet}</p>

@@ -14,13 +14,30 @@ export const MainContainer = styled.div`
     flex-direction: column;
     align-items: center;
     width: 700px;
-    height: 600px;
+    height: 500px;
     border-radius: 20px;
     background-color: whitesmoke;
     color: black;
     margin: auto;
+    h1{
+        margin-top: 60px;
+    }
     button{
+        width: 90px;
+        padding: 5px 10px;
+        margin: 5px;
+        border-radius: 5px ;
         color: black;
+        background-color: inherit;
+        transition: 0.3s;
+        font-size: 21px;
+        :hover{
+            transition: 0.3s;
+            transform: scale(1.1);
+            color: white;
+            background-color: #303030;
+            border-color: white;
+        }
     }
     form{
         display: flex;

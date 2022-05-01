@@ -14,11 +14,9 @@ const Login = () => {
       axios.post("https://us-central1-labenu-apis.cloudfunctions.net/labeX/matheus-souza-shaw/login",formulario)
         .then((response) => {
           limpaInputs()
-          console.log("Deu certo: ", response.data.token);
           localStorage.setItem("token", response.data.token);
           areaLogado(navegar,"logado");
         }).catch((error) => {
-          console.log("Deu errado: ", error.response);
           alert("Não foi possivel se logar")
           voltarPag(navegar);
         });

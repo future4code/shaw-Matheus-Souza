@@ -8,7 +8,6 @@ import sistema2 from '../../img/sistema2.png'
 const Header = () => {
     const navegar = useNavigate()
     const params = useParams()
-    console.log(params)
 
   return (
     <MainContainer>
@@ -17,7 +16,7 @@ const Header = () => {
         || params.id
         ? 
         <div >
-          {params.modal === "novaViagem" || params.page === "gerenciar" || params.modal === "inscricao"  ? 
+          {params.modal === "novaViagem" || params.page === "gerenciar" || params.modal === "inscricao" || params.id ? 
               <div className='logout' onClick={()=>pagInicial(navegar)}>
                 <img src={astronauta} alt="Astronauta"/>
                 <button>Logout</button>

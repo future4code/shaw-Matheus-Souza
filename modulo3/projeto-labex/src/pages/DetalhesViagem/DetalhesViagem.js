@@ -4,6 +4,7 @@ import Header from '../../component/Header/Header'
 import { decisao, PegaDetalhe } from '../../customHooks/Requests'
 import { pagGerenciar, pagInicial } from '../../routes/coordinator'
 import { ListaCandidatos, MainContainer } from './styled'
+import voltaNave from '../../img/voltaNave.png'
 
 const DetalhesViagem = () => {
   const navegar = useNavigate()
@@ -16,7 +17,6 @@ const DetalhesViagem = () => {
   useEffect(()=>{
     const token =localStorage.getItem("token");
     if(token === null){
-      console.log("não esta logado")
       pagInicial(navegar)
     }
   },[])
@@ -24,6 +24,12 @@ const DetalhesViagem = () => {
   return (
     <MainContainer>
       <Header/>
+      <div className='voltar'>
+        <div onClick={()=>pagGerenciar(navegar,"gerenciar")}>
+            <img src={voltaNave} alt="Nave de volta"/>
+            <button>Voltar</button>
+        </div>
+      </div>
       <h1>{detalhes.name}</h1>
       <div>
       <p><strong>Nome: </strong>{detalhes.name}</p>
@@ -32,11 +38,10 @@ const DetalhesViagem = () => {
       <p><strong>Duração: </strong>{detalhes.durationInDays} dias</p>
       <p><strong>Data de saida: </strong>{detalhes.date}</p>
       </div>
-      <button onClick={()=>pagGerenciar(navegar,"gerenciar")}>Voltar</button>
       <h1>Candidatos Pendentes</h1>
       {candidatos && candidatos.length > 0 ? detalhes.candidates.map((candidato)=>{
        return(
-          <ListaCandidatos>
+          <ListaCandidatos key={candidato.id}>
               <p><strong>Nome: </strong>{candidato.name}</p>
               <p><strong>Idade: </strong>{candidato.age}</p>
               <p><strong>País: </strong>{candidato.country}</p>
@@ -52,9 +57,9 @@ const DetalhesViagem = () => {
       <h1>Candidatos Aprovados</h1>
       {aprovados && aprovados.length > 0 ? aprovados.map((candidato)=>{
        return(
-          <ListaCandidatos>
+          <ListaCandidatos  key={candidato.id}>
              <p><strong>Nome: </strong>{candidato.name}</p>
-           </ListaCandidatos>
+          </ListaCandidatos>
       )
       }) : <p>Nenhum candidato aprovado</p>}
     </MainContainer>

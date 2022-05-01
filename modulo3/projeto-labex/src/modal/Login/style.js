@@ -15,7 +15,7 @@ export const MainContainer = styled.div`
     align-items: center;
     justify-content: center;
     width: 700px;
-    height: 600px;
+    height: 400px;
     border-radius: 20px;
     background-color: whitesmoke;
     color: black;

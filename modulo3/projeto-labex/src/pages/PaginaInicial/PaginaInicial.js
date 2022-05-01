@@ -10,7 +10,6 @@ import { pagInicial } from '../../routes/coordinator'
 const PaginaInicial = () => {
   const params = useParams()
   const navegar = useNavigate()
-  console.log(params)
 
   useEffect(()=>{
     const token =localStorage.getItem("token");

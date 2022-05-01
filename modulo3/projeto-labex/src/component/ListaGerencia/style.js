@@ -8,7 +8,7 @@ export const CardLista = styled.div`
     justify-content: start;
     transition: 0.3s;
     padding: 10px;
-    margin: 5px;
+    margin: 15px;
     font-size: 21px;
     .excluir{
         margin: 0 15px;
@@ -44,6 +44,7 @@ export const CardLista = styled.div`
         transition: 0.3s;
         transform: scale(1.1);
         box-shadow: 5px 5px 5px lightgray;
+        border-radius: 15px;
     }
 
 `
