@@ -26,7 +26,7 @@ const PaginaInicial = () => {
         {params.modal === "inscricao"? <InscriçãoViagem/> : null}
         {params.modal === "login" ? <Login/> : null}
         <h1>
-          Encontre viagens espaciais, explore a galaxia, ou se preferir cadastre-se e crie a propria viagem e chame os seus amigos
+          Encontre viagens espaciais, explore a galaxia, ou se preferir cadastre-se, crie a propria viagem e chame os seus amigos
         </h1>
           <ListaDeViagens/>
     </MainContainer>

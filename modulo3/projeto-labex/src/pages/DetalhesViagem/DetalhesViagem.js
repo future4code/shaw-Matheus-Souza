@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
+import Header from '../../component/Header/Header'
 import { decisao, PegaDetalhe } from '../../customHooks/Requests'
 import { pagGerenciar, pagInicial } from '../../routes/coordinator'
 import { ListaCandidatos, MainContainer } from './styled'
@@ -22,6 +23,7 @@ const DetalhesViagem = () => {
 
   return (
     <MainContainer>
+      <Header/>
       <h1>{detalhes.name}</h1>
       <div>
       <p><strong>Nome: </strong>{detalhes.name}</p>
@@ -40,12 +42,10 @@ const DetalhesViagem = () => {
               <p><strong>País: </strong>{candidato.country}</p>
               <p><strong>Pofissão: </strong>{candidato.profession}</p>
               <p><strong>Motivação: </strong>{candidato.applicationText}</p>
-              <form onSubmit={()=> decisao(id,candidato.id,true)}>
-                <button>Aprovado</button>
-              </form>
-              <form onSubmit={()=> decisao(id,candidato.id,false)}>
-                <button>Reprovado</button>
-              </form>
+              <div className='botoes'>
+                <button onClick={()=> decisao(id,candidato.id,true)}>Aprovar</button>           
+                <button onClick={()=> decisao(id,candidato.id,false)}>Reprovar</button> 
+              </div>
            </ListaCandidatos>
       )
       }) : <p>Nenhum candidato pendente</p>}

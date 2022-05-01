@@ -2,6 +2,8 @@ import React from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { pagGerenciar, pagInicial, abreLogin } from '../../routes/coordinator'
 import { MainContainer } from './style'
+import astronauta from '../../img/astronauta.png'
+import sistema2 from '../../img/sistema2.png'
 
 const Header = () => {
     const navegar = useNavigate()
@@ -12,20 +14,32 @@ const Header = () => {
     <MainContainer>
         <h1>Labex</h1>
         {params.log === "logado" || params.modal === "novaViagem" || params.page === "gerenciar" 
-        // || params.modal === "inscricao" 
+        || params.id !== "" 
         ? 
-        <div>
+        <div >
           {params.modal === "novaViagem" || params.page === "gerenciar" || params.modal === "inscricao"  ? 
-          <button onClick={()=>pagInicial(navegar)}>Logout</button>
+              <div className='logout' onClick={()=>pagInicial(navegar)}>
+                <img src={astronauta} alt="Astronauta"/>
+                <button>Logout</button>
+              </div>
           :
-          <div>
-            <button onClick={()=>pagGerenciar(navegar,"gerenciar")}>Gerenciar</button>
-            <button onClick={()=>pagInicial(navegar)}>Logout</button>
+          <div className='botoes'>
+            <div className='gerenciar' onClick={()=>pagGerenciar(navegar,"gerenciar")}>
+              <img src={sistema2} alt="Astronauta"/>
+              <button>Gerenciar</button>
+            </div>
+            <div className='logout' onClick={()=>pagInicial(navegar)}>
+              <img src={astronauta} alt="Astronauta"/>
+              <button>Logout</button>
+            </div>
           </div>
           }         
         </div>
         :
-        <button onClick={()=>abreLogin(navegar,"login")}>Login</button>
+        <div className='login' onClick={()=>abreLogin(navegar,"login")}>
+          <img src={astronauta} alt="Astronauta"/>
+          <button >Login</button>
+        </div>
         }
     </MainContainer>
   )

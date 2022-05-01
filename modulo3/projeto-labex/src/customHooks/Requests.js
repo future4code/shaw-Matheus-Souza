@@ -1,5 +1,7 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { voltarPag } from '../routes/coordinator'
 
 export const PegaLista = () => {
   const [viagens,setViagens] = useState([])
@@ -25,7 +27,7 @@ export const PegaDetalhe = (idViagem) => {
         }).catch(erro =>{
             console.log(erro)
         })
-    },[])
+    },[detalhes.candidates])
   return detalhes
 }
 export const decisao = (idViagem,idCandidato,escolha) => {
@@ -33,20 +35,21 @@ export const decisao = (idViagem,idCandidato,escolha) => {
     const body = {"approve": escolha}
     axios.put(`https://us-central1-labenu-apis.cloudfunctions.net/labeX/matheus-souza-shaw/trips/${idViagem}/candidates/${idCandidato}/decide`,body,{headers:{auth:token}})
     .then(resposta =>{
-      alert("Candidato aprovado")
+      alert("Decisão registrada")
       console.log(resposta.data)
     }).catch(erro =>{
         console.log(erro)
+        alert("Não foi possivel tomar a decisão")
     })
 }
-export const useForm = (initialState) => {
-  const [formulario, setForm] = useState(initialState);
+export const useForm = (estadoInicial) => {
+  const [formulario, setForm] = useState(estadoInicial);
   const onChange = (event) => {
     const { name, value } = event.target;
     setForm({ ...formulario, [name]: value });
   };
-  const cleanFields = () => {
-    setForm(initialState);
+  const limpaInputs = () => {
+    setForm(estadoInicial);
   };
-  return { formulario, onChange, cleanFields };
+  return { formulario, onChange, limpaInputs };
 }

@@ -6,14 +6,14 @@ import { Background, MainContainer } from './style';
 import { useForm } from '../../customHooks/Requests';
 
 const Login = () => {
-  const { formulario, onChange, cleanFields } = useForm({ email: "", password: "" });
+  const { formulario, onChange, limpaInputs } = useForm({ email: "", password: "" });
   const navegar = useNavigate()
 
   const logar = (event) => {
     event.preventDefault()
       axios.post("https://us-central1-labenu-apis.cloudfunctions.net/labeX/matheus-souza-shaw/login",formulario)
         .then((response) => {
-          cleanFields()
+          limpaInputs()
           console.log("Deu certo: ", response.data.token);
           localStorage.setItem("token", response.data.token);
           areaLogado(navegar,"logado");
@@ -27,6 +27,7 @@ const Login = () => {
   return (
     <Background>
         <MainContainer>
+        <h1>Login</h1>
           <form onSubmit={logar}>
             <input
                 name='email'
@@ -46,6 +47,9 @@ const Login = () => {
             />
             <button>Enviar</button>
           </form>
+          <button onClick={()=>voltarPag(navegar)}>
+                Voltar
+          </button>
         </MainContainer>  
     </Background>
   )

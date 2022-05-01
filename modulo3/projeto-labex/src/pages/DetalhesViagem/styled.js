@@ -12,4 +12,15 @@ export const ListaCandidatos = styled.div`
     margin: 10px;
     padding: 20px;
     box-shadow: 5px 5px 5px lightgrey;
+    .botoes{
+        display: flex;
+        align-self: center;
+        width: 50%;
+        justify-content: space-between;
+        button{
+        padding: 5px;
+        margin: 5px;
+        border-radius: 5px;
+        }
+    }
 `

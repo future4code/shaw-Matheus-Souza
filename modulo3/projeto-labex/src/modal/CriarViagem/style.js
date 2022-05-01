@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const Background = styled.div`
     display: flex;
     position: fixed;
-    z-index: 1;
+    z-index: 2;
     overflow: auto;
     width: 100%;
     height: 100%;
@@ -14,8 +14,27 @@ export const MainContainer = styled.div`
     flex-direction: column;
     align-items: center;
     width: 700px;
-    height: 700px;
+    height: 600px;
     border-radius: 20px;
     background-color: whitesmoke;
     margin: auto;
+    form{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 60%;
+        input{
+            width: 97%;
+            padding: 5px;
+            margin: 5px;
+            border-radius: 5px;
+        }
+        select{
+            width: 100%;
+            padding: 5px;
+            margin: 5px;
+            border-radius: 5px;
+        }
+    }
 `

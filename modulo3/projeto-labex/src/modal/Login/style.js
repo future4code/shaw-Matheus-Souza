@@ -11,6 +11,7 @@ export const Background = styled.div`
 `
 export const MainContainer = styled.div`
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     width: 700px;
@@ -18,6 +19,11 @@ export const MainContainer = styled.div`
     border-radius: 20px;
     background-color: whitesmoke;
     margin: auto;
+    button{
+        padding: 5px;
+        margin: 5px;
+        border-radius: 5px;
+    }
     form{
         display: flex;
         flex-direction: column;
@@ -26,11 +32,6 @@ export const MainContainer = styled.div`
         width: 60%;
         input{
             width: 100%;
-            padding: 5px;
-            margin: 5px;
-            border-radius: 5px;
-        }
-        button{
             padding: 5px;
             margin: 5px;
             border-radius: 5px;

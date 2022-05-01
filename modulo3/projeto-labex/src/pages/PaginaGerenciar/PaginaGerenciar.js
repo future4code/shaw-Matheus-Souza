@@ -21,10 +21,13 @@ const PaginaGerenciar = () => {
 
   return (
     <MainContainer>
-        {params.modal === "novaViagem" ? <CriarViagem/> : null}
         <Header></Header>
-        <button onClick={()=>areaLogado(navegar,"logado")}>Voltar</button>
-        <button onClick={()=>abreViagem(navegar,"novaViagem")}>Criar Viagem</button>
+        
+        {params.modal === "novaViagem" ? <CriarViagem/> : null}
+        <div className='botoes'>
+          <button onClick={()=>areaLogado(navegar,"logado")}>Voltar</button>
+          <button onClick={()=>abreViagem(navegar,"novaViagem")}>Criar Viagem</button>
+        </div>
         <h1>Viagens para gerenciar</h1>
         <ListaGerencia/>
     </MainContainer>
