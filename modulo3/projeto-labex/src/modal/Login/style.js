@@ -18,11 +18,23 @@ export const MainContainer = styled.div`
     height: 600px;
     border-radius: 20px;
     background-color: whitesmoke;
+    color: black;
     margin: auto;
     button{
-        padding: 5px;
+        width: 90px;
+        padding: 5px 10px;
         margin: 5px;
         border-radius: 5px;
+        background-color: inherit;
+        transition: 0.3s;
+        font-size: 21px;
+        :hover{
+            transition: 0.3s;
+            transform: scale(1.1);
+            color: white;
+            background-color: #303030;
+            border-color: white;
+        }
     }
     form{
         display: flex;

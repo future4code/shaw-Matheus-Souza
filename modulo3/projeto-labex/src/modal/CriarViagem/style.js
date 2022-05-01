@@ -17,7 +17,11 @@ export const MainContainer = styled.div`
     height: 600px;
     border-radius: 20px;
     background-color: whitesmoke;
+    color: black;
     margin: auto;
+    button{
+        color: black;
+    }
     form{
         display: flex;
         flex-direction: column;

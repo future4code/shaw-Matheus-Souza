@@ -14,7 +14,7 @@ const Header = () => {
     <MainContainer>
         <h1>Labex</h1>
         {params.log === "logado" || params.modal === "novaViagem" || params.page === "gerenciar" 
-        || params.id !== "" 
+        || params.id
         ? 
         <div >
           {params.modal === "novaViagem" || params.page === "gerenciar" || params.modal === "inscricao"  ? 
