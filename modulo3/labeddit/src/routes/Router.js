@@ -14,7 +14,7 @@ export const Router = () => {
         <Route path="/login" element={<Login/>} />
         <Route path="/cadastro" element={<Cadastro/>} />
         <Route path="/feed" element={<Feed/>} />
-        <Route path="/post" element={<Post/>} />
+        <Route path="/post/:id" element={<Post/>} />
       </Routes>
     </BrowserRouter>
   );

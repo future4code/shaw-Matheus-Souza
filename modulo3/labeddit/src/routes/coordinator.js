@@ -14,6 +14,6 @@ export const goBack = (navigate) => {
   export const toFeed = (navigate) => {
     navigate('/feed');
   };
-  export const toPost = (navigate) => {
-    navigate('/post');
+  export const toPost = (navigate,id) => {
+    navigate(`/post/${id}`);
   };
