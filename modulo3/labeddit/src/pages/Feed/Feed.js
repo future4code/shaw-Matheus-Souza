@@ -1,34 +1,52 @@
 import axios from 'axios'
-import React, { useContext, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import React, { useState } from 'react'
 import CardPost from '../../components/CardPost/CardPost'
+import { useNavigate, useParams } from 'react-router-dom'
+import { GetRequest, useForm } from '../../hooks/Requests'
 import { toHome } from '../../routes/coordinator'
 import { MainContainer } from './style'
-import { GlobalContext } from '../../global/GlobalContext'
 
 const Feed = () => {
+  const [atualiza, setAtualiza] = useState(false)
   const navigate = useNavigate()
+  const params = useParams()
   const token =localStorage.getItem("token");
-  const {states, setter, requests} = useContext(GlobalContext)
-  const listPost = states.listPost
-  const setListPost = setter.setListPost
+  const { formulario, onChange, limpaInputs } = useForm({ title: "", body: "" });
+  const { listPost } = GetRequest(params.id,atualiza);
+  // console.log(listPost)
 
-  const pegaPosts = () => {
-      axios.get("https://labeddit.herokuapp.com/posts",{headers:{Authorization:token}})
+  const criaPosts = (event) => {
+    event.preventDefault()
+      axios.post("https://labeddit.herokuapp.com/posts",formulario,{headers:{Authorization:token}})
         .then((response) => {
-          setListPost(response.data)
-          console.log(response.data)
+          setAtualiza(!atualiza)
+          limpaInputs()
         }).catch((error) => {
         });
   };
 
-  useEffect(()=>{
-    pegaPosts()
-  },[])
-
   return (
     <MainContainer>
       <h1>Feed</h1>
+      <form onSubmit={criaPosts}> 
+        <input
+          name='title'
+          placeholder='Titulo do Post'
+          type='text'
+          value={formulario.title}
+          onChange={onChange}
+          required
+        />
+        <textarea 
+          name='body'
+          placeholder='Escreva seu Post aqui.'
+          type='text'
+          value={formulario.body}
+          onChange={onChange}
+          required
+        />
+        <button>Postar</button>
+      </form>
       {listPost && listPost.map((post) => {
           return <CardPost key={post.id} post={post}/>;
       })}

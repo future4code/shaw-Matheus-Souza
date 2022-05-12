@@ -12,3 +12,32 @@ export const useForm = (estadoInicial) => {
     };
     return { formulario, onChange, limpaInputs };
   }
+
+export const GetRequest = (id,atualiza) => {
+  const [listPost,setListPost] = useState([])
+  const [comments,setComments] = useState([])
+  const token =localStorage.getItem("token");
+  
+  const pegaPosts = () => {
+      axios.get("https://labeddit.herokuapp.com/posts",{headers:{Authorization:token}})
+      .then((response) => {
+        setListPost(response.data)
+      }).catch((error) => {
+      });
+    };
+
+  const pegaComments = () => {
+    if(id !== ''){
+      axios.get(`https://labeddit.herokuapp.com/posts/${id}/comments`,{headers:{Authorization:token}})
+       .then((response) => {
+         setComments(response.data)
+       }).catch((error) => {
+     });
+    }
+  }
+  useEffect(()=>{
+    pegaPosts()
+    pegaComments()
+  },[atualiza])
+  return{listPost, comments}
+}
