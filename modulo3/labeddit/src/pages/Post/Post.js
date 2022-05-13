@@ -21,8 +21,7 @@ const Post = () => {
     .then((response) => {
       setAtualiza(!atualiza)
       limpaInputs()
-    }).catch((error) => {
-    });
+    }).catch((error) => { });
   };
 
   const postagem = listPost.filter((post)=>{
@@ -45,7 +44,7 @@ const Post = () => {
         <button>Comentar</button>
       </form>
       {comments.length >0 ?  comments.map((comment) => {
-          return <CardComments key={comment.id} comment={comment}/>;
+          return <CardComments key={comment.id} comment={comment} atualiza={atualiza} setAtualiza={setAtualiza}/>;
       }) :
       <h3>Ainda não há comentários!</h3>}
       <button onClick={()=>toFeed(navigate)}>Voltar</button>

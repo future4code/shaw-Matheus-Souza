@@ -8,6 +8,7 @@ export const MainContainer = styled.div`
     border-radius: 10px;
     margin: 10px 0;
     padding: 15px;
+    font-family: 'Noto Sans', sans-serif;
 `
 export const FooterCard = styled.div`
     display: flex;

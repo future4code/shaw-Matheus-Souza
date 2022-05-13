@@ -13,7 +13,6 @@ const Feed = () => {
   const token =localStorage.getItem("token");
   const { formulario, onChange, limpaInputs } = useForm({ title: "", body: "" });
   const { listPost } = GetRequest(params.id,atualiza);
-  // console.log(listPost)
 
   const criaPosts = (event) => {
     event.preventDefault()
@@ -48,7 +47,7 @@ const Feed = () => {
         <button>Postar</button>
       </form>
       {listPost && listPost.map((post) => {
-          return <CardPost key={post.id} post={post}/>;
+          return <CardPost key={post.id} post={post} atualiza={atualiza} setAtualiza={setAtualiza}/>;
       })}
       <button onClick={()=>toHome(navigate)}>home</button>
     </MainContainer>
