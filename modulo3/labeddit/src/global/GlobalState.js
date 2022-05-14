@@ -1,20 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { GlobalContext } from "./GlobalContext";
 
 export default function GlobalState(props) {
-    const [listPost,setListPost] = useState([])
-    const [post,setPost] = useState([])
-    const [comments,setComments] = useState([])
+    const [atualiza, setAtualiza] = useState(false)
 
-  useEffect(()=>{ 
-  },[])
-
-  const states = {listPost, post, comments}
-  const setter = {setListPost, setPost, setComments}
-  const requests = {}
+  const states = {atualiza}
+  const setter = {setAtualiza}
 
   return (
-    <GlobalContext.Provider value={{ states, setter, requests }}>
+    <GlobalContext.Provider value={{ states, setter }}>
       {props.children}
     </GlobalContext.Provider>
   );

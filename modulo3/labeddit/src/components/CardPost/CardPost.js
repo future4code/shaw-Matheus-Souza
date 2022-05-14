@@ -4,49 +4,32 @@ import { toPost } from '../../routes/coordinator';
 import { Comentar, FooterCard, MainContainer, Votos } from './styled'
 import up from '../../assets/img/up.png'
 import down from '../../assets/img/down.png'
+import upGreen from '../../assets/img/upGreen.png'
+import downRed from '../../assets/img/downRed.png'
 import chat from '../../assets/img/chat.png'
-import axios from 'axios';
+import { Votar } from '../../hooks/Requests';
 
 const CardPost = (props) => {
   const navigate = useNavigate() 
   const params = useParams()
-
-  // console.log(comentarios)
-  // console.log(comments)
-
-  const votoUp = () => {
-      const token = localStorage.getItem("token");
-      const body = {"direction": 1}
-      axios.post(`https://labeddit.herokuapp.com/posts/${props.post.id}/votes`,body,{headers:{Authorization:token}})
-      .then(resposta =>{ 
-        alert('foi')
-        props.setAtualiza(!props.atualiza)
-      })
-      .catch(erro =>{ })
-  }
-  const votoDown = () => {
-      const token = localStorage.getItem("token");
-      const body = {"direction": -1}
-      axios.put(`https://labeddit.herokuapp.com/posts/${props.post.id}/votes`,body,{headers:{Authorization:token}})
-      .then(resposta =>{ 
-        alert('foi')
-        props.setAtualiza(!props.atualiza)
-      })
-      .catch(erro =>{ })
-  }
+  const { votoUp,votoDown,votoDel } =  Votar ('posts',props.post.id);
 
   return (
     <MainContainer>
-        <p>Enviado por: <strong>{props.post.username}</strong></p>
+        <p>Enviado por: {props.post.username}</p>
         {params.id ? <h2>{props.post.title}</h2> : null} 
         <h3>{props.post.body}</h3>
         <FooterCard>
           <Votos>
-            <img src={up} alt='UpVote' onClick={votoUp}/>
-            {props.post.voteSum === null ? 
-            <p>0</p> : 
-            <p>{props.post.voteSum}</p>}      
-            <img src={down} alt='DownVote' onClick={votoDown}/>
+            {props.post.userVote === 1 ? 
+            <img src={upGreen} alt='UpVote' onClick={votoDel}/> 
+            :
+            <img src={up} alt='UpVote' onClick={votoUp}/>}
+            {props.post.voteSum === null ? <p>0</p> : <p>{props.post.voteSum}</p>}      
+            {props.post.userVote === -1 ? 
+            <img src={downRed} alt='DownVote' onClick={votoDel}/> 
+            :
+            <img src={down} alt='DownVote' onClick={votoDown}/>}
           </Votos>
           <Comentar>
             {!params.id ?

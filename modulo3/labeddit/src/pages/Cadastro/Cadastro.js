@@ -3,7 +3,8 @@ import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import { useForm } from '../../hooks/Requests'
 import { toFeed, toHome, toLogin } from '../../routes/coordinator'
-import { MainContainer } from './style'
+import { Main, MainContainer } from './style'
+import Header from '../../components/Header/Header'
 
 const Cadastro = () => {
   const { formulario, onChange, limpaInputs } = useForm({ username:"", email: "", password: "" });
@@ -24,39 +25,41 @@ const Cadastro = () => {
 
   return (
     <MainContainer>
-      <button onClick={()=>toHome(navigate)}>Voltar</button>
-      <h1>Cadastro</h1>
-      <form onSubmit={cadastrar}>
+      <Header/>
+      <Main>
+        <h1>Cadastro</h1>
+        <form onSubmit={cadastrar}>
+          <input
+            name='username'
+            placeholder='Nome de Usuario'
+            type='text'
+            value={formulario.username}
+            onChange={onChange}
+            required
+          />
         <input
-          name='username'
-          placeholder='Nome de Usuario'
-          type='text'
-          value={formulario.username}
-          onChange={onChange}
-          required
-        />
-      <input
-          name='email'
-          placeholder='Email'
-          type='email'
-          value={formulario.email}
-          onChange={onChange}
-          required
-        />
-        <input
-          name='password'
-          placeholder='Senha'
-          type='password'
-          value={formulario.password}
-          onChange={onChange}
-          pattern='^.{8,30}$'
-          title='Deve conter entra 8 e 30 digitos, entre letras e números'
-          required
-        />
-        <button>Continuar</button>
-      </form>
-      <h3>Já faz parte do Labeddit?</h3>
-      <button onClick={()=>toLogin(navigate)}>Entrar</button>
+            name='email'
+            placeholder='Email'
+            type='email'
+            value={formulario.email}
+            onChange={onChange}
+            required
+          />
+          <input
+            name='password'
+            placeholder='Senha'
+            type='password'
+            value={formulario.password}
+            onChange={onChange}
+            pattern='^.{8,30}$'
+            title='Deve conter entra 8 e 30 digitos, entre letras e números'
+            required
+          />
+          <button>Continuar</button>
+        </form>
+        <h3>Já faz parte do Labeddit?</h3>
+        <button onClick={()=>toLogin(navigate)}>Entrar</button>
+      </Main>
     </MainContainer>
   )
 }

@@ -1,24 +1,14 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
-import { toLogin, toRegister } from '../../routes/coordinator'
-import { Botoes, Header, MainContainer } from './style'
-import marca from '../../assets/img/marca.png'
-import logo from '../../assets/img/logo.png'
+import {  MainContainer } from './style'
+import Header from '../../components/Header/Header'
+import logoHome from '../../assets/img/logoHome.png'
 
 const Home = () => {
-    const navigate = useNavigate()
   return (
     <MainContainer>
-        <Header>
-            <div className='imgs'>
-                <img src={logo}/>
-                <img src={marca}/>
-            </div>
-            <Botoes>
-                <button onClick={()=>toLogin(navigate)}>Entrar</button>
-                <button onClick={()=>toRegister(navigate)}>Cadastrar</button>
-            </Botoes>
-        </Header>
+        <Header></Header>
+        <h2>Faça parte da rede social que mais cresce desce sua criação, encontre seus amigos, mesmo os do outro lado da galaxia!!</h2>
+        <img className='Logo' src={logoHome} alt='logo da Home'/>
     </MainContainer>
   )
 }

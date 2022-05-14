@@ -1,33 +1,31 @@
 import styled from 'styled-components'
+import espaco from '../../assets/img/espaco.png'
+import espacoVazio from '../../assets/img/espacoVazio.png'
 
 export const MainContainer = styled.div`
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
-    background-color: whitesmoke;
-    margin: 0;
-    padding: 0;
-`
-export const Header = styled.div`
-    display: flex;
-    flex-direction: row;
     align-items: center;
-    justify-content: space-between;
-    height: 6vh;
-    background-color: whitesmoke;
-    box-shadow: 0px 2px 10px gray;
-    .imgs{
-        display: flex;
-        align-items: center;
-        text-align: center;
-        height: 100%;
-        margin-left: 10px;
-        gap: 2px;
-        img{
-            height: 75%;
+    text-align: center;
+    min-height: 100vh;
+    font-family: 'Noto Sans', sans-serif;
+    color: white;
+    background: #242424 url(${espaco});
+    animation: brilhoEspaco 4s infinite alternate ease-in-out;
+    @keyframes brilhoEspaco{
+        from{
+            background: #242424 url(${espaco}) ;
+        }
+        to{
+            background: #242424 url(${espacoVazio});
         }
     }
-`
-export const Botoes = styled.div`
-    margin-right: 10px;
+    h2{
+        width: 85%;
+        margin-top: 35px;
+    }
+    .Logo{
+        margin-top: 30px;
+        width: 75%;
+    }
 `
