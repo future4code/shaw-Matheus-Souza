@@ -1,70 +1,28 @@
-# Getting Started with Create React App
+### LabEddit
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### O que funciona
+- Na pagina home podemos escolher entre logar ou cadastrar email.
+- Tanto a pagina de Login quanto a de Cadastro, direcionam uma de volta para outra caso o usuário mude sua decisão entre logar e cadastrar novo email.
+- Ao realizar um cadastro novo o usuário será direcionado para o Feed, da mesma forma que alguém que já tem cadastro faz ao se logar.
+- Na pagina de Feed podemos ver varias postagens, assim como podemos criar novas.
+- Cada post tem um botão para comentários, que direciona o usuário a uma pagina focada no post escolhido.
+- Dentro da pagina de um post, o usuário pode fazem seu comentário e assim conversar com quem fez o post ou outros comentaristas.
+- Cada post e comentário tem seus botões de votação, sendo possível dar votos positivos, negativos e também retirar um voto se achar necessário, quando um voto é realizado o lado escolhido ficara colorido, quando esta em branco significa que  o usuário ainda não votou ali.
 
-## Available Scripts
+### O que não funciona
+- Não há opção de mudar de pagina, os post apresentados são os 10 mais recentes.
 
-In the project directory, you can run:
+### Link Surge 
+https://responsible-ducks.surge.sh
 
-### `npm start`
+### Imagens
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+![labeddit1](https://user-images.githubusercontent.com/99031516/168494994-9ec3bbf2-5a8d-4ddf-83ec-5c4492b28fde.jpg)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+![labeddit2](https://user-images.githubusercontent.com/99031516/168494996-8370b308-4ec3-48c8-8a4a-a0650cbf35ab.jpg)
 
-### `npm test`
+![labeddit3](https://user-images.githubusercontent.com/99031516/168494997-c5f3a55b-f808-4e1a-b9ef-c4ee8549df52.jpg)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+![labeddit4](https://user-images.githubusercontent.com/99031516/168494998-8cc6381b-750d-474d-9441-7000ec7fa2db.jpg)
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+![labeddit5](https://user-images.githubusercontent.com/99031516/168494999-d7e8ac17-e85f-4813-a1f9-8298e6d770ec.jpg)
