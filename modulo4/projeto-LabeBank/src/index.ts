@@ -70,15 +70,28 @@ app.listen(3003, () => {
 })
 // Para testar se o servidor está tratando os endpoints corretamente
 
+const conversorYear = (data:string) => {  
+  const ano = data.substring(6, 10) 
+  return ano
+}
+const conversorMonth = (data:string) => {
+  const mes = data.substring(3, 5)   
+  return mes
+}
+const conversorDay = (data:string) => {
+  const dia = data.substring(0, 2) 
+  return dia
+}
+const yearNow = new Date().getFullYear();
+const monthNow = new Date().getMonth();
+const dayNow = new Date().getDate();
+
 app.get("/users", (req: Request, res: Response) => {
   res.status(200).send(users)
 })
 
 app.post("/createAccount", (req: Request, res: Response) => {
   try{
-    const yearNow = new Date().getFullYear();
-    const monthNow = new Date().getMonth();
-    const dayNow = new Date().getDate();
     const extract:Extract[] = []
     const balance = 0
     const { cpf, name, birthday}: User = req.body
@@ -92,18 +105,6 @@ app.post("/createAccount", (req: Request, res: Response) => {
     if(findCpf){
       res.status(409)
       throw new Error("Usuario já existe em nosso banco")
-    }
-    const conversorYear = (data:string) => {  
-      const ano = data.substring(6, 10) 
-      return ano
-    }
-    const conversorMonth = (data:string) => {
-      const mes = data.substring(3, 5)   
-      return mes
-    }
-    const conversorDay = (data:string) => {
-      const dia = data.substring(0, 2) 
-      return dia
     }
     const birthYear:number = Number(conversorYear(birthday))
     const birthMonth:number = Number(conversorMonth(birthday))
@@ -224,7 +225,7 @@ app.put("/balance/:cpf", (req: Request, res: Response) => {
   }
 })
 
-app.put("/payBill/:cpf", (req: Request, res: Response) => {
+app.post("/addBill/:cpf", (req: Request, res: Response) => {
   try{
     const { value, date, description }:Extract = req.body
     if(value <=0){
@@ -267,44 +268,90 @@ app.put("/payBill/:cpf", (req: Request, res: Response) => {
       res.status(409)
       throw new Error("Cpf não encontrado")
     }
-    const conversorYear = (data:string) => {  
-      const ano = data.substring(6, 10) 
-      return ano
-    }
-    const conversorMonth = (data:string) => {
-      const mes = data.substring(3, 5)   
-      return mes
-    }
-    const conversorDay = (data:string) => {
-      const dia = data.substring(0, 2) 
-      return dia
-    }
+    
     const payYear:number = Number(conversorYear(date))
     const payhMonth:number = Number(conversorMonth(date))
     const payDay:number = Number(conversorDay(date))
-    const yearNow = new Date().getFullYear();
-    const monthNow = new Date().getMonth();
-    const dayNow = new Date().getDate();
+
     if(payYear < yearNow || //Ano menor que o atual
       (payYear === yearNow && payhMonth < monthNow) || //Mes menor que o atual
       (payYear === yearNow && payhMonth === monthNow && payDay < dayNow)){ //Dia menor que o atual
         res.status(422)
         throw new Error("Informe um dia de pagamento para durante ou depois do dia atual")
       }
-    // const findUser = users.map((user:User) => {
-    //   if(user.name === req.query.name){
-    //     return {...user, balance: user.balance + addBalance, extract: [{
-    //       value: value,
-    //       date: date,
-    //       description: description,
-    //     }]}
-    //   }else{
-    //     return user
-    //   }
-    // })
-    // users = findUser
+    const findUser = users.map((user:User) => {
+      if(user.name === req.query.name){
+        return {...user, extract: [...user.extract,{
+          value: value,
+          date: date,
+          description: description,
+        }]}
+      }else{
+        return user
+      }
+    })
+    users = findUser
     console.log(users)
-    const resposta = `Nome: ${findCpf.name}, Saldo atual: R$ ${findCpf.balance - value}`
+    const resposta = `Valor registrado será debitado até o final do dia ${date}`
+    res.status(200).send(resposta)  
+  }catch(error:any){
+    res.send(error.message)
+  }
+})
+
+app.put("/payBill/:cpf", (req: Request, res: Response) => {
+  try{
+    if(req.query.name === undefined){
+      res.status(422)
+      throw new Error("Nome do usuario precisa ser informado")
+    }else{
+      const [findName] = users.filter((user:User) => {
+        if(user.name === req.query.name){
+          return user
+        }
+      })
+      if(!findName){
+        res.status(409)
+        throw new Error("Nome inserido não existe")
+      }
+    }
+    const cpf:number = Number(req.params.cpf)
+    const [findCpf] = users.filter((user:User) => {
+      if(user.cpf === cpf){
+        return user
+      }
+    })
+    if(!findCpf){
+      res.status(409)
+      throw new Error("Cpf não encontrado")
+    }
+    const findUser = users.map((user:User) => {
+      if(user.name === req.query.name){
+        let totalToPay = 0
+        const updateBills = user.extract.map((bill:Extract)=>{
+          const payYear:number = Number(conversorYear(bill.date))
+          const payhMonth:number = Number(conversorMonth(bill.date))
+          const payDay:number = Number(conversorDay(bill.date))
+          if(payYear < yearNow || //Ano menor que o atual
+            (payYear === yearNow && payhMonth < monthNow) || //Mes menor que o atual
+            (payYear === yearNow && payhMonth === monthNow && payDay <= dayNow)){ //Dia menor ou igual ao atual
+              totalToPay += bill.value
+              return {...bill, description: "paid" }
+            }
+            else{
+              return bill
+            }
+          }).filter((bill)=>{
+            return bill.description !== "paid"
+          })
+        return {...user, balance: user.balance - totalToPay, extract: updateBills}
+      }else{
+        return user
+      }
+    })
+    users = findUser
+    console.log(users)
+    const resposta = `Todas as contas com data para hoje ou antes foram pagas`
     res.status(200).send(resposta)  
   }catch(error:any){
     res.send(error.message)
