@@ -1,13 +1,6 @@
 import { Request, Response } from "express"
 import connection from "./connection"
 import app from "./app"
-
-type User = {
-    id: string,
-    name: string,
-    nickname: string,
-    email: string,
-}
  
 const conversorYear = (data:string) => {  
     const ano = data.substring(6, 10) 
@@ -83,6 +76,24 @@ const createTask = async (
         creatorUserId: creatorUserId,
         }).into("Tasks");
 };
+
+// const taskById = async (): Promise<any> => {
+//     await connection("Tasks")
+//             .join('Users', 'Tasks.creatorUserId', `Users.id`)
+//             .select('Tasks.id', 'Tasks.title', 'Tasks.description', 'Tasks.limitDate', 'Tasks.creatorUserId', 'Users.nickname')
+
+
+// };
+
+const taskById = async (userId:string): Promise<any> => {
+    const result = await connection.raw(`
+        SELECT Tasks.id, Tasks.title, Tasks.description, Tasks.limitDate, Tasks.creatorUserId, Users.nickname FROM Tasks 
+        INNER JOIN Users ON Tasks.creatorUserId = "${userId}";
+    `);
+    return result[0];
+};
+
+
 
 app.post("/user", async (req: Request, res: Response) => {
     try {
@@ -199,6 +210,34 @@ app.post("/task", async (req: Request, res: Response) => {
         req.body.creatorUserId,
     );
     res.status(200).send("Tarefa criada com sucesso");
+    } catch (err:any) {
+      res.status(400).send({
+        message: err.message,
+      });
+    }
+});
+
+app.get("/task/:id", async (req: Request, res: Response) => {
+    try {
+        let taskFind:any = ""
+        await taskById(req.params.id).then(result => {
+            taskFind = result
+        })
+        res.status(200).send(taskFind);
+    } catch (err:any) {
+      res.status(400).send({
+        message: err.message,
+      });
+    }
+});
+
+app.get("/user", async (req: Request, res: Response) => {
+    try {
+        let listUsers:any = ""
+        await allUsers().then(result => {
+           listUsers = result
+        })
+    res.status(200).send(listUsers);
     } catch (err:any) {
       res.status(400).send({
         message: err.message,
