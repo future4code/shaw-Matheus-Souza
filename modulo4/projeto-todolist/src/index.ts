@@ -5,18 +5,21 @@ import app from "./app"
 const conversorYear = (data:string) => {  
     const ano = data.substring(6, 10) 
     return ano
-  }
-  const conversorMonth = (data:string) => {
+}
+
+const conversorMonth = (data:string) => {
     const mes = data.substring(3, 5)   
     return mes
-  }
-  const conversorDay = (data:string) => {
+}
+
+const conversorDay = (data:string) => {
     const dia = data.substring(0, 2) 
     return dia
-  }
-  const yearNow = new Date().getFullYear();
-  const monthNow = new Date().getMonth();
-  const dayNow = new Date().getDate();
+}
+
+const yearNow = new Date().getFullYear();
+const monthNow = new Date().getMonth();
+const dayNow = new Date().getDate();
 
 const createUser = async (
     id: string,
@@ -52,6 +55,12 @@ const userById = async (id: string): Promise<any> => {
     `);
     return result[0][0];
 };
+const taskByID = async (id: string): Promise<any> => {
+    const result = await connection.raw(`
+          SELECT * FROM Tasks WHERE id = "${id}"
+    `);
+    return result[0][0];
+};
 
 const allUsers = async (): Promise<any> => {
     const result = await connection.raw(`
@@ -77,23 +86,16 @@ const createTask = async (
         }).into("Tasks");
 };
 
-// const taskById = async (): Promise<any> => {
-//     await connection("Tasks")
-//             .join('Users', 'Tasks.creatorUserId', `Users.id`)
-//             .select('Tasks.id', 'Tasks.title', 'Tasks.description', 'Tasks.limitDate', 'Tasks.creatorUserId', 'Users.nickname')
-
-
-// };
-
-const taskById = async (userId:string): Promise<any> => {
+const innerTaskById = async (taskId:string): Promise<any> => {
     const result = await connection.raw(`
         SELECT Tasks.id, Tasks.title, Tasks.description, Tasks.limitDate, Tasks.creatorUserId, Users.nickname FROM Tasks 
-        INNER JOIN Users ON Tasks.creatorUserId = "${userId}";
+        INNER JOIN Users on Tasks.creatorUserId = Users.id
+        WHERE Tasks.id = "${taskId}";
     `);
     return result[0];
 };
 
-
+//  1
 
 app.post("/user", async (req: Request, res: Response) => {
     try {
@@ -115,6 +117,8 @@ app.post("/user", async (req: Request, res: Response) => {
       });
     }
 });
+
+//  2
 
 app.get("/user/:id", async (req: Request, res: Response) => {
     try {
@@ -140,6 +144,8 @@ app.get("/user/:id", async (req: Request, res: Response) => {
       });
     }
 });
+
+//  3
 
 app.put("/user/edit/:id", async (req: Request, res: Response) => {
     try {
@@ -177,6 +183,8 @@ app.put("/user/edit/:id", async (req: Request, res: Response) => {
       });
     }
 });
+
+//  4
 
 app.post("/task", async (req: Request, res: Response) => {
     try {
@@ -217,11 +225,19 @@ app.post("/task", async (req: Request, res: Response) => {
     }
 });
 
+//  5
+
 app.get("/task/:id", async (req: Request, res: Response) => {
     try {
         let taskFind:any = ""
-        await taskById(req.params.id).then(result => {
-            taskFind = result
+        await innerTaskById(req.params.id).then(result => {
+            [taskFind] = result
+        })
+        await taskByID(req.params.id).then(result => {
+            if(!result){
+                res.status(409)
+                throw new Error("Não foi possivel encontrar a tarefa")
+            }
         })
         res.status(200).send(taskFind);
     } catch (err:any) {
@@ -230,6 +246,8 @@ app.get("/task/:id", async (req: Request, res: Response) => {
       });
     }
 });
+
+//  6
 
 app.get("/user", async (req: Request, res: Response) => {
     try {
