@@ -6,7 +6,6 @@ export const getProfileById = async (req: Request, res: Response) => {
     try {
         const id = req.params.id
         const token = req.headers.authorization as string;
-        const authenticationData = getData(token);
   
         const user = await getUserByInf("id",id);
 

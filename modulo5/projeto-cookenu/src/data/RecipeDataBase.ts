@@ -14,11 +14,11 @@ export const createRecipe = async (
     });
 };  
 
-// export const getUserByInf = async(coluna:string, inf: string): Promise<any> => {
-//     const result = await connection
-//       .select("*")
-//       .from("Usuario")
-//       .where(coluna, inf);
+export const getRecipeByInf = async(coluna:string, inf: string): Promise<any> => {
+    const result = await connection
+      .select("*")
+      .from("Recipe")
+      .where(coluna, inf);
 
-//     return result[0];
-// }
+    return result[0];
+}

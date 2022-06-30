@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
+import moment from "moment";
 import { createRecipe } from "../data/RecipeDataBase";
-import { getUserByInf } from "../data/UserDatabase";
 import { generateId } from "../service/generateId";
 import { getData } from "../service/getData";
 
@@ -15,11 +15,7 @@ export const recipe = async (req: Request, res: Response) => {
         };
          
         const id:string = generateId();
-        const date = new Date();
-        const day = String(date.getDate()).padStart(2, '0');
-        const month = String(date.getMonth() + 1).padStart(2, '0');
-        const year = date.getFullYear();
-        const date_post = `${year}-${month}-${day}`
+        const date_post = moment().format("YYYY-MM-DD")
 
         console.log(date_post)
         
