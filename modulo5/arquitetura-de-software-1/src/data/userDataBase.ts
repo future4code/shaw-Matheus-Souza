@@ -1,37 +1,75 @@
 import { connection } from "../connection";
-import { user } from "../types/user";
 
-// export const insertUser = async(
-//    user: user
-// ) => {
-//    await connection.insert({
-//       id: user.id,
-//       name: user.name,
-//       email: user.email,
-//       password: user.password,
-//       role: user.role
-//    }).into('User_Arq')
-// }
+const TABLE_NAME = "User_Arq"
 
 export class UserDataBase{
-
    public createUser= async( 
       id: string,
-      email: string,
       name: string,
+      email: string,
       password: string,
-		role: string
+		  role: string
       ): Promise<void> => {
       try {
         await connection()
           .insert({
             id,
-            email,
             name,
+            email,
             password,
-				role
+				    role
           })
-          .into('User_Arq');
+          .into(TABLE_NAME);
+      } catch (error:any) {
+        throw new Error(error.sqlMessage || error.message);
+      }
+    }
+
+    public getUserByEmail = async (email: string): Promise<any> => {
+      try {
+  
+        const result = await connection()
+          .select("*")
+          .from(TABLE_NAME)
+          .where({ email });
+          
+        if(!result[0]){
+          throw new Error("Usuário não encontrado");
+        }
+        return result[0];
+      } catch (error:any) {
+        throw new Error(error.sqlMessage || error.message);
+      }
+    }
+
+    public getAllUsers = async(): Promise<any[]> =>{
+
+      try {
+          const users: any = [];
+
+          const result = await connection()
+              .select("*")
+              .from(TABLE_NAME);
+
+          for(let user of result){
+              users.push(user);
+          }
+
+          return users;
+
+      } catch (error:any) {
+          throw new Error(error.sqlMessage || error.message);
+      }
+    }
+
+    public deleteUser = async(id: string): Promise<void> =>{
+
+      try {
+        await connection()
+          .where({ id })
+          .from(TABLE_NAME)
+          .del()
+          
       } catch (error:any) {
         throw new Error(error.sqlMessage || error.message);
       }
