@@ -25,33 +25,11 @@ export class PostBusiness{
             }
     }
 
-    // async getUserByEmail(user:dataLogin) {
+    async getPostById(id:string, token:string) {
 
-    //     const userFromDB = await userDB.getUserByEmail(user.email);
-    //     const hashCompare = await compare(user.password, userFromDB.password);
-    //     if (!hashCompare) {
-    //         throw new Error("Invalid Password!");
-    //     }
+        const postFromDB = await postDB.getPostById(id);
+        const verifiedToken = getTokenData(token);
 
-    //     const accessToken = generateToken({ id: userFromDB.id});
-
-    //     return accessToken;
-    // }
-
-    // async getAllUsers(token: string) {
-
-    //     getTokenData(token);
-    //     return await userDB.getAllUsers();
-    // }
-
-    // async deleteUser(input: {id:string, token:string}) {
-
-    //     const verifiedToken = getTokenData(input.token);
-
-	// // if(verifiedToken.role !== "ADMIN"){
-	// //         throw new Error("Apenas administradores podem deletar usuários!")
-	// // }
-
-    //     return await userDB.deleteUser(input.id);
-    // }
+        return postFromDB;
+    }
 }
