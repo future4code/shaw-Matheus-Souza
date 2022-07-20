@@ -165,6 +165,9 @@ export const Texto = styled.p`
   display: flex;
   position: absolute;
   bottom: 0%;
+  @media screen and (min-device-width:320px) and (max-device-width:425px){
+     font-size: 0.85rem;
+  }
 `
 
 export const Numbers = styled.div`
@@ -181,6 +184,6 @@ export const Numbers = styled.div`
     }
     @media screen and (min-device-width:320px) and (max-device-width:375px){
       margin-bottom: 40%;
-      width: 90%;
+      width: 95%;
     }
 `

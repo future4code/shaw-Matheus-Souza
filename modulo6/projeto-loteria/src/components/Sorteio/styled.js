@@ -10,6 +10,7 @@ export const MainContainer = styled.div`
     }
     @media screen and (min-device-width:320px) and (max-device-width:375px){
         p{
+        margin: 3px;
         padding: 10px;
         }
     }
