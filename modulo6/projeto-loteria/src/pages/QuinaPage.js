@@ -1,24 +1,33 @@
 import React, { useEffect, useState } from 'react'
 import { goToDiadesorte, goToLotofacil, goToLotomania, goToMega, goToTimemania } from '../routes/coordinator';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { Contest, GameName, LeftContent, LeftSide, MainContainer, RightSide } from './styled';
-import logo from "../logo.png"
-import { GetLoterias } from '../hooks/GetLoteria';
+import { Contest, GameName, LeftContent, LeftSide, MainContainer, Numbers, RightBackground, RightBackgroundHoriz, RightContent, RightSide, Texto } from './styled';
+import logo from "../assets/logo.png"
+import loto_bk from "../assets/loteria_bk.png"
+import loto_horiz from "../assets/loteria_horiz.png"
+import { GetLoterias } from "../hooks/GetLoteria"
 import { GetConcursos } from '../hooks/GetConcursos';
+import { GetNumeros } from '../hooks/GetNumeros';
+import NumeroSorteado from '../components/Sorteio/Sorteio';
+import moment from 'moment';
 
 const QuinaPage = () => {
   const [currentPage,setCurrentPage] = useState("")
   const [currentLocation, setCurrentLocation] = useState("")
-  const navigate = useNavigate()
-  const location = useLocation()
   const loterias = GetLoterias()
   const concursos = GetConcursos()
   const [concurso, setConsurso] = useState({})
+  const [loteria, setLoteria] = useState({})
+  const [numeros,infs] = GetNumeros(concurso.concursoId,concurso)
+  const navigate = useNavigate()
+  const location = useLocation()
+
+  console.log(numeros);
 
   const onChangePage = (event) => {
     setCurrentPage(event.target.value);
   };
-
+  
   useEffect(()=>{
     switch(currentPage){
       case "mega-sena":
@@ -36,17 +45,18 @@ const QuinaPage = () => {
       case "dia de sorte":
         goToDiadesorte(navigate);
         break;
-      default:
-        setCurrentPage("quina")
+      default: 
+      setCurrentPage("quina")
     }
-    setCurrentLocation(location.pathname)
   // eslint-disable-next-line
+  setCurrentLocation(location.pathname);
   },[currentPage])
 
   useEffect(()=>{
     const loteria = loterias.find((loteria) => {
       return loteria.nome === currentPage
     })
+    setLoteria(loteria)
     console.log(loteria);
     if(concursos?.length > 0 && loterias?.length>0){
       const filtroConcurso = concursos.find((concurso) => {
@@ -58,8 +68,8 @@ const QuinaPage = () => {
   },[loterias,concursos,currentPage])
 
   return (
-    <MainContainer color={currentLocation}>
-      <LeftSide>
+    <MainContainer >
+      <LeftSide color={currentLocation}>
         <LeftContent>
           <select  name="select" onChange={onChangePage}>
             <option value="quina">QUINA</option>
@@ -71,17 +81,29 @@ const QuinaPage = () => {
           </select>
           <GameName>
             <img src={logo} alt="Logo do jogo"/>
-            <p> QUINA </p>
+            {numeros.length > 0 ? 
+              <p> {loteria.nome.toUpperCase()} </p>
+             : <p>...</p>}
           </GameName>
-          <Contest>
-            <p>Consurso</p>
-            <p>4531 - 07/04/2020</p>
-          </Contest>
+            {numeros.length > 0 ? 
+              <Contest>
+                <p>Consurso</p>
+                <p><strong>{infs.id} - {moment(infs.data).format("DD/MM/YYYY")}</strong></p>
+              </Contest>
+             : <p>Carregando dados</p>}
         </LeftContent>
+        <RightBackground src={loto_bk}/>
+        <RightBackgroundHoriz src={loto_horiz}/>
       </LeftSide>
       <RightSide>
-          <p>Numeros</p>
-          <p>Este sorteio é meramente ilustrativo e não possui nenhuma ligação com a CAIXA</p>
+        <RightContent>
+          <Numbers>
+            {numeros.length > 0 ? numeros.map((numero) => {
+              return <NumeroSorteado key={numero.numero} numero={numero}/>;
+            }) : <p>Carregando números</p>}
+          </Numbers>
+          <Texto>Este sorteio é meramente ilustrativo e não possui nenhuma ligação com a CAIXA</Texto>
+        </RightContent>
       </RightSide>
     </MainContainer>
   )

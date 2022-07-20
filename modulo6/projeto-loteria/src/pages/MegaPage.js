@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { goToDiadesorte, goToLotofacil, goToLotomania, goToQuina, goToTimemania } from '../routes/coordinator';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { Contest, GameName, LeftContent, LeftSide, MainContainer, Numbers, RightBackground, RightContent, RightSide } from './styled';
-import logo from "../logo.png"
+import { Contest, GameName, LeftContent, LeftSide, MainContainer, Numbers, RightBackground, RightBackgroundHoriz, RightContent, RightSide, Texto } from './styled';
+import logo from "../assets/logo.png"
+import loto_bk from "../assets/loteria_bk.png"
+import loto_horiz from "../assets/loteria_horiz.png"
 import { GetLoterias } from "../hooks/GetLoteria"
 import { GetConcursos } from '../hooks/GetConcursos';
 import { GetNumeros } from '../hooks/GetNumeros';
@@ -66,8 +68,8 @@ const MegaPage = () => {
   },[loterias,concursos,currentPage])
 
   return (
-    <MainContainer color={currentLocation}>
-      <LeftSide>
+    <MainContainer >
+      <LeftSide color={currentLocation}>
         <LeftContent>
           <select  name="select" onChange={onChangePage}>
             <option value="mega-sena">MEGA-SENA</option>
@@ -83,25 +85,24 @@ const MegaPage = () => {
               <p> {loteria.nome.toUpperCase()} </p>
              : <p>...</p>}
           </GameName>
-          <Contest>
             {numeros.length > 0 ? 
-              <div>
+              <Contest>
                 <p>Consurso</p>
-                <p>{infs.id} - {moment(infs.data).format("DD/MM/YYYY")}</p>
-              </div>
+                <p><strong>{infs.id} - {moment(infs.data).format("DD/MM/YYYY")}</strong></p>
+              </Contest>
              : <p>Carregando dados</p>}
-          </Contest>
         </LeftContent>
+        <RightBackground src={loto_bk}/>
+        <RightBackgroundHoriz src={loto_horiz}/>
       </LeftSide>
       <RightSide>
-        <RightBackground/>
         <RightContent>
           <Numbers>
             {numeros.length > 0 ? numeros.map((numero) => {
               return <NumeroSorteado key={numero.numero} numero={numero}/>;
             }) : <p>Carregando números</p>}
           </Numbers>
-          <p>Este sorteio é meramente ilustrativo e não possui nenhuma ligação com a CAIXA</p>
+          <Texto>Este sorteio é meramente ilustrativo e não possui nenhuma ligação com a CAIXA</Texto>
         </RightContent>
       </RightSide>
     </MainContainer>
