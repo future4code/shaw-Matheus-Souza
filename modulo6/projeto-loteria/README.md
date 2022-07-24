@@ -1,16 +1,21 @@
 ### Projeto Loteria
 
-O objetivo é construir uma aplicação web front-end que mostre os Resultados das Loterias.
+O objetivo é construir uma aplicação web front-end que mostre os Resultados das Loterias. Ao selecionar algum dos jogos, a pagina ira mostrar os dados correspondentes, como números sorteados, numero do concurso e data em que foi realizado.
 
 ### O que funciona
-- DESCREVA O QUE FUNCIONA NO SEU PROJETO
+- Caixa de seleção de jogos para troca de informações na página
+- Responsividade para Desktop e Mobile.
 
-### O que não funciona
-- DESCREVA O QUE NÃO FUNCIONA NO SEU PROJETO
 
 ### Link Surge 
-A PARTIR DA SEMANA 5, INSIRA AQUI O LINK DO SURGE. **ANTES DISSO, APAGUE ESSAS DUAS LINHAS.**
+[agreeable-voice.surge.sh](http://agreeable-voice.surge.sh)
 
 ### Imagens
-TIRE PRINTS DAS TELAS DO SEU SITE E COLE AQUI
 
+Desktop
+
+![image](https://user-images.githubusercontent.com/99031516/180657155-96fa364b-713b-4280-90ba-4f958dc96f2b.png)
+
+Mobile
+
+![image](https://user-images.githubusercontent.com/99031516/180657198-c1182c0b-15e0-4b42-a634-f44d8b3132d6.png)
