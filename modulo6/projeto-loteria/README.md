@@ -1,5 +1,6 @@
 ### Projeto Loteria
 
+Este projeto foi desenvolvido com um case de desafio proposto pela Brainn, que indicou o layout e API para serem utilizadas. Havia a opção de utilizar Typescript e React Router, mas para este projeto optei apenas em usar o Router, separando cada conteudo dos jogos em uma página com endereço próprio. Para mais informações sobre o case da Brainn acesse [aqui](https://github.com/brainnco-exs/readme-frontend).
 O objetivo é construir uma aplicação web front-end que mostre os Resultados das Loterias. Ao selecionar algum dos jogos, a pagina ira mostrar os dados correspondentes, como números sorteados, numero do concurso e data em que foi realizado.
 
 ### O que funciona
