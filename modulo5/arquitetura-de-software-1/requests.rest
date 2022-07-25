@@ -1,0 +1,33 @@
+POST http://localhost:3003/signup
+Content-Type: application/json
+
+{
+   "name": "Renan",
+   "email": "renazin@boll.com",
+   "password": "123456",
+   "role": "NORMAL"
+}
+
+###
+# @name login
+POST http://localhost:3003/login
+Content-Type: application/json
+
+{
+   "email": "renazin@boll.com",
+   "password": "123456"
+}
+
+###
+
+@token = {{login.response.body.token}}
+GET http://localhost:3003/all
+Content-Type: application/json
+Authorization:{{token}}
+
+###
+
+@token = {{login.response.body.token}}
+DELETE http://localhost:3003/80f2f85f-864a-414a-9c81-be8535d79457
+Content-Type: application/json
+Authorization:{{token}}
