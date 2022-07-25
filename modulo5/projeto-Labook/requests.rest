@@ -1,0 +1,39 @@
+# @name signup
+POST http://localhost:3003/signup
+Content-Type: application/json
+
+{
+   "name": "Renan",
+   "email": "renazin@boll.com",
+   "password": "123456"
+}
+
+###
+# @name login
+POST http://localhost:3003/login
+Content-Type: application/json
+
+{
+   "email": "renazin@boll.com",
+   "password": "123456"
+}
+
+###
+
+@token = {{login.response.body.token} || {signup.response.body.token}}
+POST http://localhost:3003/post
+Content-Type: application/json
+Authorization:{{token}}
+
+{
+   "photo": "www.photos.com",
+   "description": "Foto de gato",
+   "type": "NORMAL"
+}
+
+###
+
+@token = {{login.response.body.token} || {signup.response.body.token}}
+GET http://localhost:3003/post/90a118de-4c32-4bb6-8b75-4bd5d7ae240f
+Content-Type: application/json
+Authorization:{{token}}
