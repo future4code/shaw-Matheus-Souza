@@ -1,0 +1,21 @@
+# @name signup
+
+POST http://localhost:3003/signup
+Content-Type: application/json
+
+{
+   "name": "Renan",
+   "email": "renazin@boll.com",
+   "password": "123456"
+}
+
+###
+
+# @id = {{signup.response.body.newUser.id}}
+
+# PUT http://localhost:3003/user/edit/{{id}}
+# Content-Type: application/json
+
+# {
+#    "name": "Harry Osbourne" 
+# }
