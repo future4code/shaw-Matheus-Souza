@@ -3,16 +3,17 @@ import { useEffect, useState } from 'react'
 import { api_key } from '../constants/api_key'
 import { baseUrl } from '../constants/baseUrl'
 
-export const GetGenres = () => {
-    const [genres,setGenres] = useState([])
+export const GetDetails = (id) => {
+    const [details,setDetails] = useState([])
     useEffect (()=>{
-        axios.get(`${baseUrl}/genre/movie/list?api_key=${api_key}&language=pt-BRL`)
+        axios.get(`${baseUrl}/movie/${id}?api_key=${api_key}&language=pt-BRL`)
         .then((response) => {
-            setGenres(response.data.genres)
+            // console.log(response);
+            setDetails(response.data)
         })
         .catch((error) => {
             console.log(error);
         })
     },[])
-    return genres
+    return details
 }

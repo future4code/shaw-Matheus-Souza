@@ -3,9 +3,8 @@ import { GetGenres } from '../../hooks/GetGenre'
 import GenderButtons from '../GenderButtons/GenderButtons'
 import { Content, GenderList, MainContainer, MainText, Top } from './styled'
 
-const Header = () => {
+const HeaderHome = () => {
   const generos = GetGenres()
-  console.log(generos)
   return (
     <MainContainer>
       <Top>
@@ -29,4 +28,4 @@ const Header = () => {
   )
 }
 
-export default Header
+export default HeaderHome
