@@ -4,6 +4,7 @@ export const MainContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100%;
     min-height: 35%;
     background-color: #2D0C5E;
     font-family: "Roboto", sans-serif;

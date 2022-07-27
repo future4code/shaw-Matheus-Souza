@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 export const MainContainer = styled.div`
-    width: 15%;
-    margin: 10px;
+    width: 150px;
+    margin: 15px;
     img{
         width: 100%;
         height: auto;

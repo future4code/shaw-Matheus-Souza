@@ -15,7 +15,6 @@ const Home = () => {
               return <CardMovies key={filme.id} filme={filme}/>;
             }) : <p>Carregando filmes</p>}
         </MoviesList>
-        Home
     </MainContainer>
   )
 }
