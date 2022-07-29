@@ -26,6 +26,9 @@ export const Top = styled.div`
         height: 20px;
         background-color: #FFFFFF;
         border-radius: 20px;
+        :hover{
+            cursor: pointer;
+        }
     }
 `
 
@@ -37,7 +40,7 @@ export const Content = styled.div`
 `
 
 export const PosterBox = styled.div`
-    width: 40%;
+    width: 400px;
     margin: 15px 0;
     margin-right: 25px;
     position: relative;
@@ -56,16 +59,24 @@ export const TextBox = styled.div`
     flex-direction: column;
     align-items: flex-start;
     text-align: start;
-    width: 60%;
+    width: 75%;
     margin-top: 10px;
 `
 
 export const Title = styled.div`
+    display: flex;
+    flex-direction: column;
     width: 80%;
-    font-size: 1.8em;
-    font-weight: bold;
     margin-top: 50px;
     margin-bottom: 20px;
+`
+
+export const Subtitle = styled.div`
+    display: flex;
+    flex-flow: row wrap;
+    P{
+        margin: 0 2px;
+    }
 `
 
 export const Overview = styled.div`
@@ -74,4 +85,43 @@ export const Overview = styled.div`
     justify-content: start;
     width: 100%;
     margin-bottom: 50px;
+`
+
+export const Grafico = styled.div`
+    display: flex;
+    width: 150px;
+    align-items: center;
+    justify-content: space-between;
+`
+
+export const Triangulo = styled.div`
+    width: 250px;
+    height: 250px;
+    background-color: #36ff9a;
+    margin:0 auto;
+    border-radius: 50%;
+    animation: square 3s linear;
+
+    @keyframes square {
+    0%   {
+        clip-path: polygon(100% 0, 100% 0%, 100% 0%, 100% 0%, 100% 0%, 50% 50%);
+        background-color: #36ff9a;
+    }
+    25%  {
+        clip-path: polygon(100% 0, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 50% 50%);
+        background-color: #36ff9a;
+    }
+    50%{
+        clip-path: polygon(100% 0, 100% 100%, 0% 100%, 0% 100%, 0 100%, 50% 50%);
+        background-color: #36ff9a;
+    }
+    75%  {
+        clip-path: polygon(100% 0, 100% 100%, 0 100%, 0 0%, 0 0, 50% 50%);
+        background-color: #36ff9a;
+    }
+    100% {
+        clip-path: polygon(100% 0, 100% 100%, 0 100%, 0 0, 100% 0, 50% 50%);
+        background-color: #36ff9a;
+    }
+    }
 `

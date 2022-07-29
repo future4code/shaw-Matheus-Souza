@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { api_key } from '../constants/api_key'
 import { baseUrl } from '../constants/baseUrl'
 
-export const GetRecommendations = (id) => {
+export const GetRecommendations = (id,location) => {
     const [movie,setMovie] = useState([])
     useEffect (()=>{
         axios.get(`${baseUrl}/movie/${id}/recommendations?api_key=${api_key}&language=pt-BRL&page=1`)
@@ -14,6 +14,6 @@ export const GetRecommendations = (id) => {
         .catch((error) => {
             console.log(error);
         })
-    },[])
+    },[location])
     return movie
 }

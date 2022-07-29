@@ -15,3 +15,16 @@ export const MoviesList = styled.div`
     margin-top: 20px;
     width: 100%;
 `
+
+export const DivTeste = styled.div`
+    display: flex;
+    p{
+        font-weight: bold;
+        color: #5C16C5;
+        margin: 10px;
+        margin-bottom: 50px;
+        :hover{
+            cursor: pointer;
+        }
+    }
+`

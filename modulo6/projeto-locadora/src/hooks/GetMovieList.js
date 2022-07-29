@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { api_key } from '../constants/api_key'
 import { baseUrl } from '../constants/baseUrl'
 
-export const GetMovieList = (page) => {
+export const GetMovieList = (page,location) => {
     const [movie,setMovie] = useState([])
     useEffect (()=>{
         axios.get(`${baseUrl}/movie/popular?api_key=${api_key}&language=pt-BRL&page=${page}`)
@@ -14,6 +14,6 @@ export const GetMovieList = (page) => {
         .catch((error) => {
             console.log(error);
         })
-    },[])
+    },[location])
     return movie
 }

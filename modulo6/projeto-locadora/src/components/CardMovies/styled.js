@@ -1,7 +1,18 @@
 import styled from "styled-components";
 
+const CardsWidth = location => {
+    // const numero = Number(location.substring(1))
+    switch (location) {
+        case "/":
+        case `/${Number(location.substring(1))}`:
+            return "15%";
+        default:
+            return "150px";
+    }
+};
+
 export const MainContainer = styled.div`
-    width: 150px;
+    width: ${({ location }) => CardsWidth(location)};
     margin: 15px;
     img{
         width: 100%;
