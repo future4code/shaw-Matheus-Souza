@@ -7,14 +7,20 @@ import CardMovies from '../../components/CardMovies/CardMovies'
 import HeaderDetails from '../../components/HeaderDetails/HeaderDetails'
 import { GetDetails } from '../../hooks/GetDetails'
 import { GetRecommendations } from '../../hooks/GetRecommendations'
-import { ListRecommend, MainContainer } from './styled'
+import { Content, ListCast, ListRecommend, MainContainer, Trailer } from './styled'
+import { GetTrailer } from '../../hooks/GetTrailer';
+import {YT_base_Url} from "../../constants/YT_base_Url"
+import { GetCredits } from '../../hooks/GetCredits';
+import CardCast from '../../components/CardCast/CardCast';
 
 const DetailsPage = () => {
   const location = useLocation()
   const params = useParams()
   const detalhes = GetDetails(params.id,location.pathname)
   const recomendações = GetRecommendations(params.id,location.pathname)
-  // console.log(detalhes);
+  const trailer = GetTrailer(params.id,location.pathname)
+  const [elenco, funcionarios] = GetCredits(params.id,location.pathname)
+  console.log(trailer);
 
   const settings = {
     dots: true,
@@ -82,13 +88,38 @@ const DetailsPage = () => {
   return (
     <MainContainer>
         <HeaderDetails detalhes={detalhes}/>
-        <ListRecommend>
-          <Slider {...settings}>
-            {recomendações.length > 0 ? recomendações.map((filme) => {
-              return <CardMovies key={filme.id} filme={filme}/>;
-            }) : <p>Carregando filmes</p>} 
-          </Slider>
-        </ListRecommend>
+        <Content>
+          <ListCast>
+            <h3>
+              Elenco Original
+            </h3>
+            <Slider {...settings}>
+              {elenco.length > 0 ? elenco.map((ator) => {
+                return <CardCast key={ator.id} ator={ator}/>;
+              }) : <p>Carregando filmes</p>} 
+            </Slider>
+          </ListCast>
+          <Trailer>
+            <h3>
+              Trailer
+            </h3>
+            {trailer ? 
+              <iframe src={`${YT_base_Url}${trailer.key}`} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              :
+              <div>Trailer não disponivel</div>
+            }
+          </Trailer>
+          <ListRecommend>
+            <h3>
+              Recomendações
+            </h3>
+            <Slider {...settings}>
+              {recomendações.length > 0 ? recomendações.map((filme) => {
+                return <CardMovies key={filme.id} filme={filme}/>;
+              }) : <p>Carregando filmes</p>} 
+            </Slider>
+          </ListRecommend>
+        </Content>
     </MainContainer>
   )
 }

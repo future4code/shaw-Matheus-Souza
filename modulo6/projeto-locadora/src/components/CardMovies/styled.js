@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 const CardsWidth = location => {
-    // const numero = Number(location.substring(1))
     switch (location) {
         case "/":
         case `/${Number(location.substring(1))}`:
@@ -12,11 +11,13 @@ const CardsWidth = location => {
 };
 
 export const MainContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
     width: ${({ location }) => CardsWidth(location)};
     margin: 15px;
     img{
         width: 100%;
-        height: auto;
         border-radius: 5px;
         border: 1px #E7E7E7 solid;
         transition: 0.3s;
@@ -25,5 +26,8 @@ export const MainContainer = styled.div`
             transform: scale(1.05);
             box-shadow: 0px 0px 15px grey;
         }
+    }
+    p{
+        margin: 5px 0;
     }
 `

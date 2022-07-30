@@ -49,7 +49,6 @@ export const PosterBox = styled.div`
         width: 100%;
         border-radius: 10px;
         box-shadow: 0px 2px 5px grey;
-        
     }
 `
 
@@ -78,50 +77,50 @@ export const Subtitle = styled.div`
         margin: 0 2px;
     }
 `
+export const Grafico = styled.div`
+    display: flex;
+    width: 250px;
+    align-items: center;
+    justify-content: space-between;
+    div{
+        width: 80px;
+    }
+`
 
 export const Overview = styled.div`
     display: flex;
     flex-flow: row wrap;
     justify-content: start;
     width: 100%;
-    margin-bottom: 50px;
+    margin-bottom: 10px;
 `
 
-export const Grafico = styled.div`
+export const StaffList = styled.div`
     display: flex;
-    width: 150px;
-    align-items: center;
-    justify-content: space-between;
+    flex-flow: row wrap;
+    justify-content: start;
+    width: 100%;
+    margin-bottom: 20px;
+    div{
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        margin: 5px 35px;
+        margin-left: 0;
+        p{
+            margin: 0;
+        } 
+    }
 `
-
-export const Triangulo = styled.div`
-    width: 250px;
-    height: 250px;
-    background-color: #36ff9a;
-    margin:0 auto;
-    border-radius: 50%;
-    animation: square 3s linear;
-
-    @keyframes square {
-    0%   {
-        clip-path: polygon(100% 0, 100% 0%, 100% 0%, 100% 0%, 100% 0%, 50% 50%);
-        background-color: #36ff9a;
-    }
-    25%  {
-        clip-path: polygon(100% 0, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 50% 50%);
-        background-color: #36ff9a;
-    }
-    50%{
-        clip-path: polygon(100% 0, 100% 100%, 0% 100%, 0% 100%, 0 100%, 50% 50%);
-        background-color: #36ff9a;
-    }
-    75%  {
-        clip-path: polygon(100% 0, 100% 100%, 0 100%, 0 0%, 0 0, 50% 50%);
-        background-color: #36ff9a;
-    }
-    100% {
-        clip-path: polygon(100% 0, 100% 100%, 0 100%, 0 0, 100% 0, 50% 50%);
-        background-color: #36ff9a;
-    }
-    }
+export const Directors = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin: 10px;
+`
+export const Producers = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin: 10px;
 `

@@ -1,7 +1,7 @@
 import moment from 'moment'
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useLocation, useNavigate } from 'react-router-dom';
-import { CardsDetails, CardsHome, MainContainer } from './styled'
+import { MainContainer } from './styled'
 import {image_Url} from "../../constants/image_Url"
 import { goToDetails } from '../../routes/coordinator'
 

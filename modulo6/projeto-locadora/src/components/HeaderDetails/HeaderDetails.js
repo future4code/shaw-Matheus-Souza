@@ -2,19 +2,29 @@ import moment from 'moment'
 import React from 'react'
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import { image_Url } from '../../constants/image_Url'
-import { GetGenres } from '../../hooks/GetGenre'
 import { goToHome } from '../../routes/coordinator'
-import GenderButtons from '../GenderButtons/GenderButtons'
-import { Content, Genres, Grafico, MainContainer, Overview, PosterBox, Subtitle, TextBox, Title, Top, Triangulo } from './styled'
+import { Content, Grafico, MainContainer, Overview, PosterBox, StaffList, Subtitle, TextBox, Title, Top } from './styled'
+import { GetCredits } from '../../hooks/GetCredits';
 
 const HeaderDetails = (detalhes) => {
   const navigate = useNavigate()
-  // const generos = GetGenres()
-  console.log(detalhes.detalhes);
-
+  const location = useLocation()
+  const params = useParams()
+  // console.log(detalhes.detalhes);
   const generos = detalhes.detalhes.genres
+  const [elenco, funcionarios] = GetCredits(params.id,location.pathname)
+  // console.log(elenco);
+  console.log(funcionarios);
+
+  const diretores = funcionarios.filter((cargo)=>{
+    return cargo.job === "Director"
+  })
+
+  const produtores = funcionarios.filter((cargo)=>{
+    return cargo.job === "Producer"
+  })
 
   const convertMinsToHrsMins = ((minutes)=>{
     let h = Number(Math.floor(minutes / 60));
@@ -29,11 +39,9 @@ const HeaderDetails = (detalhes) => {
 
   ChartJS.register(ArcElement, Tooltip, Legend);
   const data = {
-    labels: ['Nota', ''],
     hidden: true,
     datasets: [
       {
-        label: '# of Votes',
         data: [nota, notaRestante],
         backgroundColor: [
           '#14FF00',
@@ -68,15 +76,16 @@ const HeaderDetails = (detalhes) => {
             <p>{moment(detalhes.detalhes.release_date).format("DD/MM/YYYY")} ({detalhes.detalhes.original_language.toUpperCase()}) • 
             </p>
             {generos.map((genero) => {
-              return <p>{genero.name} • </p>
+              return <p key={genero.id}>{genero.name} • </p>
             })}
             <p> {convertMinsToHrsMins(detalhes.detalhes.runtime)} </p>
           </Subtitle>
           <Grafico>
-            <Doughnut data={data}/>
+            <div>
+              <Doughnut data={data}/>
+            </div>
             <p>Avaliação dos usuários</p>
           </Grafico>
-          {/* <Triangulo></Triangulo> */}
           </Title>
           :
             <div>Carregando informações</div>
@@ -86,6 +95,20 @@ const HeaderDetails = (detalhes) => {
             <strong> Sinopse </strong>
             <p>{detalhes.detalhes.overview}</p>
           </Overview>
+          <StaffList>
+            {diretores.length>0 ? diretores.map((diretor)=>{
+              return <div>
+                <p><strong>{diretor.name}</strong></p>
+                <p>{diretor.job}</p>
+              </div>
+            }):<div></div>}
+            {produtores.length>0 ? produtores.map((produtor)=>{
+              return <div>
+                <p><strong>{produtor.name}</strong></p>
+                <p>{produtor.job}</p>
+              </div>
+            }):<div></div>}
+          </StaffList>
         </TextBox>
       </Content>
     </MainContainer>
