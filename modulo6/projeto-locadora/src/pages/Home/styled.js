@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import ReactPaginate from "react-paginate";
 
 export const MainContainer = styled.div`
 display: flex;
@@ -16,15 +17,34 @@ export const MoviesList = styled.div`
     width: 100%;
 `
 
-export const DivTeste = styled.div`
+export const PaginateContainer = styled(ReactPaginate)`
+    height: 40px;
+    list-style: none;
     display: flex;
-    p{
+    justify-content: center;
+    margin-bottom: 50px;
+    a {
+        padding: 5px;
+        margin: 5px;
+        border-radius: 5px;
         font-weight: bold;
         color: #5C16C5;
-        margin: 10px;
-        margin-bottom: 50px;
-        :hover{
-            cursor: pointer;
+        cursor: pointer;
+                :hover {
+            color: whitesmoke;
+            background-color: #ceb9ed;
         }
     }
-`
+    
+    .paginationActive a {
+        color: #5C16C5;
+        background-color: #ceb9ed;
+    }
+    
+    @media screen and (min-device-width: 320px) and (max-device-width: 480px) {
+        a {
+            padding: 5px;
+            margin: 5px;
+        }
+    }
+`;

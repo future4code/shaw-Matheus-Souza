@@ -1,17 +1,27 @@
-import React, { useEffect } from 'react'
+import React, { useState } from 'react'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import CardMovies from '../../components/CardMovies/CardMovies'
 import HeaderHome from '../../components/HeaderHome/HeaderHome'
 import { GetMovieList } from '../../hooks/GetMovieList'
 import { goToHome, goToHomePages } from '../../routes/coordinator'
-import { DivTeste, MainContainer, MoviesList } from './styled'
+import { MainContainer, MoviesList, PaginateContainer } from './styled'
 
 const Home = () => {
+  const [lista,setLista] = useState([])
   const location = useLocation()
   const params = useParams()
   const navigate = useNavigate()
   const filmes1 = GetMovieList(1,location.pathname)
   const filmesPages = GetMovieList(params.page,location.pathname)
+
+  const changePage = ({ selected }) => {
+    console.log(selected);
+    if((selected+1) === 1){
+      goToHome(navigate)
+    }else{
+      goToHomePages(navigate,selected+1);
+    }
+  };
 
   return (
     <MainContainer>
@@ -29,15 +39,18 @@ const Home = () => {
               }) : <p>Carregando filmes</p>}
           </MoviesList>
           }
-
-          <DivTeste>
-            <p onClick={()=>goToHome(navigate)}>1</p>
-            <p onClick={()=>goToHomePages(navigate,2)}>2</p>
-            <p onClick={()=>goToHomePages(navigate,3)}>3</p>
-            <p onClick={()=>goToHomePages(navigate,4)}>4</p>
-            <p onClick={()=>goToHomePages(navigate,5)}>5</p>
-            <p onClick={()=>goToHomePages(navigate,6)}>6</p>
-          </DivTeste>   
+          <PaginateContainer
+            previousLabel={"Anterior"}
+            nextLabel={"Próxima"}
+            pageCount={500}
+            onPageChange={changePage}
+            onClick={changePage}
+            containerClassName={"paginationButtons"}
+            previousLinkClassName={"previousButton"}
+            nextLinkClassName={"nextButton"}
+            disabledClassName={"paginationDisabled"}
+            activeClassName={"paginationActive"}
+          />
     </MainContainer>
   )
 }

@@ -26,6 +26,9 @@ export const Top = styled.div`
         height: 20px;
         background-color: #FFFFFF;
         border-radius: 20px;
+        :hover{
+            cursor: pointer;
+        }
     }
 `
 
