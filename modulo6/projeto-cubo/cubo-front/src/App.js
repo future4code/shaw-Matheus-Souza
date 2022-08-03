@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { Content, Graphics, Header, ItemTable, Maincontainer, Table, TableHead, TableRows } from './AppStyled';
+import { Content, Donnut, Graphics, Header, ItemTable, Maincontainer, Table, TableHead, TableRows } from './AppStyled';
 import { baseURL } from './constants/baseURL';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
@@ -13,6 +13,7 @@ function App() {
   const [listaUsers,setListaUsers] = useState([])
   const [atualiza,setAtualiza] = useState(false)
   const [participTotal,setParticipTotal] = useState(0)
+  const [participantes,setParticipantes] = useState([])
   const [valores,setValores] = useState([])
   // console.log(valores);
 
@@ -53,24 +54,33 @@ function App() {
     .catch((error) => {
         console.log(error);
     })
+  }
+
+  const SomaParticip = () => {
     
   }
 
   ChartJS.register(ArcElement, Tooltip, Legend);
   const data = {
+    labels: participantes,
     hidden: true,
     datasets: [
       {
+        label:'Participantes',
         data: valores,
         backgroundColor: [
           '#14FF00',
-          'rgba(188,188,188, 0.1)',
-          'blue',
+          '#FFD966',
+          '#2986CC',
+          '#8E7CC3',
+          '#E06666',
         ],
         borderColor: [
-          '#14FF00',
-          'rgba(188,188,188, 0.1)',
-          'blue',
+          '#10cc00',
+          '#b29747',
+          '#1c5d8e',
+          '#635688',
+          '#9c4747',
         ],
         borderWidth: 2,
       },
@@ -79,16 +89,22 @@ function App() {
 
   useEffect (()=>{
     GetLista()
+  },[atualiza])
+
+  useEffect(()=>{
     let total = 0;
     listaUsers.forEach((item) => {
     total += Number(item.participation);
-    setParticipTotal(total)
+    setParticipTotal(total)});
     const valoresUsers = listaUsers.map((valor)=>{
       return valor.participation
     })
     setValores(valoresUsers)
-  });
-  },[atualiza])
+    const particp = listaUsers.map((nome)=>{
+      return nome.first_name
+    })
+    setParticipantes(particp)
+  },[listaUsers])
 
   return (
     <Maincontainer>
@@ -112,9 +128,9 @@ function App() {
           </input>
           <input
             name='participation'
-            placeholder='Participação'
+            placeholder="Participação"
             value={Number(formulario.participation)}
-            type='number'
+            type="number"
             onChange={onChange}
             pattern='[0-9]+'
             title='Insira números inteiros, sem virgula ou ponto'
@@ -129,7 +145,7 @@ function App() {
         <h1>DATA</h1>
         <p>Lorem Ipsum Dolor Sit Amet, Consectetur Adipiscing Elit.</p>
         <Graphics>
-          {listaUsers.length >0 ?
+          {listaUsers.length >0  ?
           <Table>
             <TableHead>
               <ItemTable> </ItemTable>
@@ -149,9 +165,9 @@ function App() {
           :
           <></>
           }
-          <div>
+          <Donnut>
               <Doughnut data={data}/>
-          </div>
+          </Donnut>
         </Graphics>
       </Content>
     </Maincontainer>

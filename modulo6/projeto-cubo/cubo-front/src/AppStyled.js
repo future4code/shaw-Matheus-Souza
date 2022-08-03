@@ -69,3 +69,7 @@ export const ItemTable = styled.div`
     padding: 10px;
     text-align: center;
 `
+
+export const Donnut = styled.div`
+    width: 35%;
+`
