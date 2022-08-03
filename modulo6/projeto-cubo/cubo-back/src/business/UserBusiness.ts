@@ -17,14 +17,15 @@ export class UserBusiness{
                 throw new BaseError(422,"Por favor preencha todos os campos");
             }
 
-            if(Number.isInteger(user.participation) === false){
-                throw new BaseError(422, "Insira um valor sem pontos ou vírgulas");
+            const registeredUsers = await this.userData.getUserByLast_name(last_name)            
+            if (registeredUsers !== undefined && registeredUsers.last_name === last_name) {
+            throw new BaseError(422, "Sobrenome já registrado")
             }
 
             return await userDB.createUser(user.first_name, user.last_name, user.participation);
 
             }catch(error:any){
-                throw new Error( error.message || "Error creating user. Please check your system administrator.");
+                throw new Error( error.message || "Erro ao registrar usuário.");
             }
     }
 

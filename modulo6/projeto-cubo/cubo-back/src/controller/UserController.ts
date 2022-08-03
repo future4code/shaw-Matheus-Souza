@@ -19,7 +19,7 @@ export class UserController {
                 participation     
             }
             await this.userBusiness.createUser(input);
-            res.status(200).send("User registered successfully");
+            res.status(200).send("Usuário registrado com sucesso");
 
         } catch (error) {
             if (error instanceof Error) {

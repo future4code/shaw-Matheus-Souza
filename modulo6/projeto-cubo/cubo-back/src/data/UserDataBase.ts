@@ -28,9 +28,23 @@ export class UserDataBase extends BaseDatabase{
           .select("*")
           .from(TABLE_NAME);
 
-        if(!result[0]){
+        if(!result){
           throw new Error("Sem usuários registrados");
         }
+        return result;
+      } catch (error:any) {
+        throw new Error(error.sqlMessage || error.message);
+      }
+    }
+
+    public getUserByLast_name = async (last_name:string): Promise<any> => {
+      try {
+
+        const [result] = await this.getConnection()
+          .select("*")
+          .from(TABLE_NAME)
+          .where("last_name", last_name);
+        
         return result;
       } catch (error:any) {
         throw new Error(error.sqlMessage || error.message);

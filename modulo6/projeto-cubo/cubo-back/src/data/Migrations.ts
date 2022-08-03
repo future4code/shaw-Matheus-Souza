@@ -10,7 +10,7 @@ class Migrations extends BaseDatabase{
                 CREATE TABLE IF NOT EXISTS ${Migrations.PARTICIPANTES} (
                     id INT PRIMARY KEY AUTO_INCREMENT,
                     first_name VARCHAR(255)  NOT NULL,
-                    last_name VARCHAR(255)  NOT NULL,
+                    last_name VARCHAR(255) UNIQUE NOT NULL,
                     participation INT NOT NULL
                 );
             `)
