@@ -1,0 +1,1 @@
+export const baseURL = "https://dogbreed-api.q9.com.br"
